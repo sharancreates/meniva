@@ -1,9 +1,9 @@
 {
-  "mse": 2.2984,
-  "rmse": 1.516,
-  "r2": 0.8542,
-  "num_samples": 1642,
-  "num_train_clients": 124,
+  "mse": 6.3645,
+  "rmse": 2.5228,
+  "r2": 0.6902,
+  "num_samples": 1660,
+  "num_train_clients": 127,
   "num_test_clients": 32,
   "features": [
     "cycle_baseline",

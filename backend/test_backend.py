@@ -43,7 +43,10 @@ class SeleneBackendTestCase(unittest.TestCase):
         self.model_path = os.path.join(os.path.dirname(__file__), 'selene_model.joblib')
         self.model_temp_path = self.model_path + '.tmp'
         if os.path.exists(self.model_path):
-            os.rename(self.model_path, self.model_temp_path)
+            try:
+                os.rename(self.model_path, self.model_temp_path)
+            except (PermissionError, OSError):
+                pass
 
     def tearDown(self):
         """
@@ -56,7 +59,10 @@ class SeleneBackendTestCase(unittest.TestCase):
         # Restore selene_model.joblib if it was hidden
         import os
         if os.path.exists(self.model_temp_path):
-            os.rename(self.model_temp_path, self.model_path)
+            try:
+                os.rename(self.model_temp_path, self.model_path)
+            except (PermissionError, OSError):
+                pass
 
     def test_registration_and_login(self):
         """
@@ -971,7 +977,10 @@ class SeleneBackendTestCase(unittest.TestCase):
         # 2. Re-trigger prediction with enough logs (11) - temporarily restore the model file
         import os
         if os.path.exists(self.model_temp_path):
-            os.rename(self.model_temp_path, self.model_path)
+            try:
+                os.rename(self.model_temp_path, self.model_path)
+            except (PermissionError, OSError):
+                pass
             
         try:
             res_pred_calibrated = self.client.get('/api/predict/next-cycle', headers=headers)
@@ -1010,7 +1019,10 @@ class SeleneBackendTestCase(unittest.TestCase):
             self.assertEqual(fb.comments, "Very accurate prediction this month!")
         finally:
             if os.path.exists(self.model_path):
-                os.rename(self.model_path, self.model_temp_path)
+                try:
+                    os.rename(self.model_path, self.model_temp_path)
+                except (PermissionError, OSError):
+                    pass
 
     def test_get_model_info(self):
         """

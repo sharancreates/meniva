@@ -199,6 +199,10 @@ class User(db.Model):
     is_deleted = db.Column(db.Boolean, nullable=False, default=False)
     deleted_at = db.Column(db.DateTime, nullable=True)
     
+    # PIN brute-force lockout tracking (Testing Guide Section 9.1 & TC-015)
+    failed_pin_attempts = db.Column(db.Integer, nullable=False, default=0)
+    pin_locked_until = db.Column(db.DateTime, nullable=True)
+
     # Relationships
     logs = db.relationship('DailyLog', backref='user', lazy=True, cascade='all, delete-orphan')
 

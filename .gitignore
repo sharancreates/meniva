@@ -5,7 +5,17 @@ __pycache__/
 
 # C extensions
 *.so
+.agent/
+.agents/
+.gemini/
+.gsd/
+adapters/
+docs/
+scripts/
 
+GSD-STYLE.md 
+model_capabilities.yaml
+PROJECT_RULES.md 
 *.db
 
 # Distribution / packaging

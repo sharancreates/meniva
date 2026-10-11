@@ -146,21 +146,21 @@ def predict_next_cycle():
                 else:
                     current_phase_est = 'luteal'
                 
-                next_period_str = next_period_date.isoformat()
+                next_period_str = None
                 days_until = (next_period_date - reference_date).days
             else:
                 current_phase_est = 'follicular'
                 next_period_str = None
                 days_until = baseline_cycle
 
-            insight = get_empathetic_insight(current_phase_est, user)
+            insight = f"Calibration mode active: {get_empathetic_insight(current_phase_est, user)}"
             disclaimer_text = "MEDICAL DISCLAIMER: Selene is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
 
             return jsonify({
                 "status": "calibrating",
-                "message": f"Selene is currently calibrating. You have recorded {len(df)}/10 total entries in your history. Please log {10 - len(df)} more entries to enable adaptive ML tracking.",
+                "message": f"Selene is currently in calibration. You have recorded {len(df)}/10 total entries in your history. Please log {10 - len(df)} more entries to enable adaptive ML tracking.",
                 "prediction": {
-                    "next_period_date": next_period_str,
+                    "next_period_date": None,
                     "estimated_phase": current_phase_est,
                     "days_until_period": days_until,
                     "cycle_length_calculated": baseline_cycle,

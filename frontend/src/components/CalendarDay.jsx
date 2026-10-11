@@ -20,6 +20,15 @@ const CalendarDay = React.memo(({
   const isOvulatory = phaseId === 'ovulatory';
   const flow = loggedDay?.flow_intensity;
 
+  // Accessible label for screen readers (WCAG 2.1 AA / Testing Guide Section 8 & TC-016)
+  const accessibleLabel = `${dateStr}, ${
+    hasLog 
+      ? `Logged ${phaseConfig?.name || 'Day'}${flow !== undefined && flow !== null ? `, Flow ${flow}` : ''}` 
+      : isPredicted 
+        ? `Predicted ${phaseConfig?.name || 'Phase'}` 
+        : 'No entries'
+  }${isToday ? ', Today' : ''}${isSelected ? ', Selected' : ''}`;
+
   // Determine text color based on background and theme
   let textColor = darkCalendar ? 'text-white' : 'text-black';
   if (hasLog && phaseConfig) {
@@ -34,6 +43,9 @@ const CalendarDay = React.memo(({
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
       title={`${dateStr}: ${hasLog ? `Logged ${phaseConfig?.name || 'Day'}` : (isPredicted ? `Predicted ${phaseConfig?.name || 'Phase'}` : 'Unlogged')}`}
+      aria-label={accessibleLabel}
+      aria-selected={isSelected}
+      aria-current={isToday ? 'date' : undefined}
       className={`relative flex flex-col items-center justify-center h-10 w-10 sm:h-11 sm:w-11 mx-auto rounded-2xl cursor-pointer focus:outline-none transition-all duration-200 ${
         isSelected 
           ? `ring-2 ${darkCalendar ? 'ring-white bg-white/10' : 'ring-[#1e2722] bg-black/10'} shadow-md z-20` 

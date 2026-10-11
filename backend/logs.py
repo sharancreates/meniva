@@ -1,6 +1,8 @@
 from datetime import datetime
+import csv
+import io
 import html
-from flask import Blueprint, request, jsonify, g
+from flask import Blueprint, request, jsonify, g, make_response
 try:
     from .models import db, DailyLog
     from .auth import jwt_required
@@ -29,6 +31,10 @@ def sync_log():
         log_date = datetime.strptime(log_date_str, '%Y-%m-%d').date()
     except ValueError:
         return jsonify({"error": "log_date must be in YYYY-MM-DD format"}), 400
+
+    # Block future date entries (Testing Guide Section 2.3 & TC-002)
+    if log_date > datetime.now().date():
+        return jsonify({"error": "Future date logging is not permitted. Please log events on or before today."}), 400
         
     # 2. Parse and validate the cycle phase
     phase = data.get('phase')
@@ -684,4 +690,90 @@ def export_pdf_report():
         if current_app:
             current_app.logger.error(f"Failed to generate consultation PDF: {str(e)}", exc_info=True)
         return jsonify({"error": "Failed to generate consultation PDF due to an internal error."}), 500
+
+
+@logs_bp.route('', methods=['DELETE'])
+@jwt_required
+def delete_log():
+    """
+    Deletes a daily health log entry for the authenticated user by date or ID.
+    Enforces strict user isolation.
+    """
+    user_id = g.user.id
+    target_date_str = request.args.get('date')
+    target_id = request.args.get('id')
+    
+    # Also check JSON body if not in query params
+    if not target_date_str and not target_id and request.is_json:
+        body = request.get_json() or {}
+        target_date_str = body.get('date') or body.get('log_date')
+        target_id = body.get('id')
+
+    if not target_date_str and not target_id:
+        return jsonify({"error": "A date (?date=YYYY-MM-DD) or id parameter is required to delete a log."}), 400
+        
+    query = DailyLog.query.filter_by(user_id=user_id)
+    if target_date_str:
+        try:
+            target_date = datetime.strptime(target_date_str, '%Y-%m-%d').date()
+            query = query.filter(DailyLog.log_date == target_date)
+        except ValueError:
+            return jsonify({"error": "Invalid date format. Use YYYY-MM-DD."}), 400
+    elif target_id:
+        query = query.filter(DailyLog.id == target_id)
+        
+    log_entry = query.first()
+    if not log_entry:
+        return jsonify({"error": "Log entry not found."}), 404
+        
+    try:
+        db.session.delete(log_entry)
+        db.session.commit()
+        return jsonify({"status": "success", "message": "Log entry deleted successfully."}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": f"Failed to delete log: {str(e)}"}), 500
+
+
+@logs_bp.route('/export/csv', methods=['GET'])
+@jwt_required
+def export_csv():
+    """
+    Exports decrypted health logs formatted as RFC 4180 CSV for clinical consultations.
+    """
+    user_id = g.user.id
+    logs = DailyLog.query.filter_by(user_id=user_id).order_by(DailyLog.log_date.asc()).all()
+    
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # Standard clinical CSV headers
+    writer.writerow([
+        "Date", "Cycle Phase", "Energy Level", "Pelvic Pain", 
+        "Flow Intensity", "Back Pain", "Sleep Quality", "Basal Body Temp", "Notes"
+    ])
+    
+    for l in logs:
+        notes_str = ""
+        if isinstance(l.lifestyle_actions, dict):
+            notes_str = l.lifestyle_actions.get("notes", "")
+        writer.writerow([
+            l.log_date.strftime("%Y-%m-%d") if l.log_date else "",
+            l.phase.capitalize() if l.phase else "",
+            l.energy_level if l.energy_level is not None else "",
+            l.pelvic_pain if l.pelvic_pain is not None else "",
+            l.flow_intensity if l.flow_intensity is not None else "",
+            l.back_pain if l.back_pain is not None else "",
+            l.sleep_quality if l.sleep_quality is not None else "",
+            l.basal_body_temp if l.basal_body_temp is not None else "",
+            notes_str
+        ])
+        
+    csv_content = output.getvalue()
+    response = make_response(csv_content, 200)
+    response.headers["Content-Type"] = "text/csv; charset=utf-8"
+    response.headers["Content-Disposition"] = f'attachment; filename="selene_logs_{g.user.username}.csv"'
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    return response
+
 

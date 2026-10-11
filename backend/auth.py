@@ -167,14 +167,15 @@ def jwt_required(f):
     """
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = request.cookies.get('access_token')
-        if not token:
-            auth_header = request.headers.get('Authorization')
-            if auth_header:
-                parts = auth_header.split()
-                if len(parts) != 2 or parts[0].lower() != 'bearer':
-                    return jsonify({"error": "Authorization header must follow 'Bearer <token>' format"}), 401
-                token = parts[1]
+        auth_header = request.headers.get('Authorization')
+        token = None
+        if auth_header:
+            parts = auth_header.split()
+            if len(parts) != 2 or parts[0].lower() != 'bearer':
+                return jsonify({"error": "Authorization header must follow 'Bearer <token>' format"}), 401
+            token = parts[1]
+        else:
+            token = request.cookies.get('access_token')
                     
         if not token:
             return jsonify({"error": "Authorization header or access_token cookie is missing"}), 401
@@ -731,13 +732,13 @@ def update_profile():
 @jwt_required
 def delete_account():
     """
-    Flags the active user account as deleted and records the timestamp (soft-delete).
+    Deletes the active user account.
+    If ?permanent=true is provided, permanently purges the user and all associated health records (GDPR Erasure).
+    Otherwise, flags the user account as soft-deleted with a 30-day recovery window.
     Revokes the active access and refresh tokens.
     """
     user = g.user
-    user.is_deleted = True
-    user.deleted_at = datetime.datetime.utcnow()
-    user.refresh_token_hash = None
+    is_permanent = request.args.get('permanent', '').lower() == 'true'
     
     # Revoke tokens
     access_token = request.cookies.get('access_token')
@@ -766,15 +767,28 @@ def delete_account():
             pass
 
     try:
-        db.session.commit()
+        if is_permanent:
+            # GDPR/CCPA Right to Erasure: Permanent purge of user and all related records
+            from models import DailyLog, PredictionFeedback
+            DailyLog.query.filter_by(user_id=user.id).delete()
+            PredictionFeedback.query.filter_by(user_id=user.id).delete()
+            db.session.delete(user)
+            db.session.commit()
+            msg = "Account and all personal health data permanently erased."
+        else:
+            user.is_deleted = True
+            user.deleted_at = datetime.datetime.utcnow()
+            user.refresh_token_hash = None
+            db.session.commit()
+            msg = "Account soft-deleted. You can restore it by logging back in within 30 days."
     except Exception as e:
         db.session.rollback()
-        current_app.logger.error(f"Failed to flag account deletion: {e}")
+        current_app.logger.error(f"Failed to delete account: {e}")
         return jsonify({"error": "Failed to delete account due to an internal error."}), 500
         
     response = make_response(jsonify({
         "status": "success",
-        "message": "Account soft-deleted. You can restore it by logging back in within 30 days."
+        "message": msg
     }), 200)
     
     response.delete_cookie('access_token')
@@ -787,23 +801,61 @@ def delete_account():
 def verify_pin():
     """
     Verifies the user's PIN for the calculator camouflage guard.
+    Implements 5-attempt brute-force lockout protection (Testing Guide Section 9.1 & TC-015).
     """
+    user = g.user
+    now = datetime.datetime.utcnow()
+    
+    # Check if user is currently locked out
+    if user.pin_locked_until and user.pin_locked_until > now:
+        remaining_seconds = int((user.pin_locked_until - now).total_seconds())
+        remaining_minutes = max(1, (remaining_seconds + 59) // 60)
+        return jsonify({
+            "error": f"Too many incorrect attempts. PIN verification is locked for {remaining_minutes} more minute(s).",
+            "unlocked": False,
+            "locked": True,
+            "retry_after_seconds": remaining_seconds
+        }), 423
+
     data = request.get_json() or {}
     pin = data.get('pin')
     kek_pin = data.get('kek_pin')
     if not pin:
         return jsonify({"error": "PIN is required"}), 400
     
-    if not verify_hash(g.user.pin_hash, str(pin)):
-        return jsonify({"error": "Incorrect PIN", "unlocked": False}), 401
+    # Verify PIN hash
+    if not verify_hash(user.pin_hash, str(pin)):
+        user.failed_pin_attempts = (user.failed_pin_attempts or 0) + 1
+        if user.failed_pin_attempts >= 5:
+            user.pin_locked_until = now + datetime.timedelta(minutes=15)
+            db.session.commit()
+            return jsonify({
+                "error": "Account temporarily locked for 15 minutes due to 5 consecutive incorrect PIN attempts.",
+                "unlocked": False,
+                "locked": True,
+                "retry_after_seconds": 900
+            }), 423
+        else:
+            db.session.commit()
+            attempts_left = 5 - user.failed_pin_attempts
+            return jsonify({
+                "error": f"Incorrect PIN. {attempts_left} attempt(s) remaining before temporary lockout.",
+                "unlocked": False,
+                "attempts_remaining": attempts_left
+            }), 401
         
+    # Reset attempts on valid PIN
+    user.failed_pin_attempts = 0
+    user.pin_locked_until = None
+    db.session.commit()
+
     if not kek_pin:
-        kek_pin = derive_kek_server(str(pin), g.user.username, is_recovery=False)
+        kek_pin = derive_kek_server(str(pin), user.username, is_recovery=False)
         
-    if g.user.encrypted_dek_pin:
+    if user.encrypted_dek_pin:
         try:
             cipher_pin = Fernet(kek_pin.encode())
-            cipher_pin.decrypt(g.user.encrypted_dek_pin.encode()).decode()
+            cipher_pin.decrypt(user.encrypted_dek_pin.encode()).decode()
         except Exception:
             return jsonify({"error": "Invalid decryption key", "unlocked": False}), 401
             
