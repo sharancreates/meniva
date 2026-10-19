@@ -1,0 +1,41 @@
+name: Feature Request
+description: Suggest an idea or clinical enhancement for Selene
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an enhancement to Selene! All new features must adhere to our zero-knowledge architecture and clinical evidence standards.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Description
+      description: Is your feature request related to a specific problem or user frustration?
+      placeholder: I am frustrated when...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: A clear and concise description of what you would like to see happen.
+    validations:
+      required: true
+  - type: textarea
+    id: clinical-evidence
+    attributes:
+      label: Clinical or Scientific Rationale (if applicable)
+      description: Does this feature connect to clinical guidelines (e.g. ACOG, Rotterdam criteria, DSM-5)? If so, please reference clinical literature.
+  - type: textarea
+    id: privacy-architecture
+    attributes:
+      label: Zero-Knowledge & Privacy Architecture
+      description: How does this feature maintain client-side encryption? Confirm that no unencrypted health indicators are required by the backend.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Any alternative solutions or workarounds you have evaluated.

@@ -5,18 +5,28 @@ __pycache__/
 
 # C extensions
 *.so
+# GSD & Agent Framework artifacts
 .agent/
 .agents/
 .gemini/
 .gsd/
 adapters/
-docs/
 scripts/
-
 GSD-STYLE.md 
 model_capabilities.yaml
 PROJECT_RULES.md 
+docs/runbook.md
+docs/model-selection-playbook.md
+docs/token-optimization-guide.md
 *.db
+
+# Media and voiceover outputs
+docs/*.mp4
+docs/*.mov
+*.mp4
+*.mov
+*.wav
+brag-output/
 
 # Distribution / packaging
 .Python
@@ -238,4 +248,15 @@ __marimo__/
 backend/.env
 frontend/.env
 backend/.env.*
+
+# IDEs and OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Frontend build & dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
 

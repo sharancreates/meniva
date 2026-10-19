@@ -156,7 +156,7 @@ Selene combines a trained **Gradient Boosting Regressor** with mathematical fall
 
 | Component | Detail |
 |:----------|:-------|
-| Primary Model | scikit-learn GBR trained on Marquette NFP Dataset with GroupShuffleSplit (R² = 0.85, RMSE = 1.52 days) |
+| Primary Model | scikit-learn GBR trained on Marquette NFP Dataset with GroupShuffleSplit (R² = 0.69, RMSE = 2.52 days) |
 | Feature Vector | `[cycle_baseline, period_baseline, has_pcos, has_pmdd, has_endo]` |
 | Uncertainty | Dynamic standard deviation bounds reported with every prediction |
 | Fallback | Weighted linear regression over historical period start dates |
@@ -255,16 +255,16 @@ source venv/bin/activate          # Windows: .\venv\Scripts\activate
 pip install -r requirements.txt
 
 # Configure environment
-cp .env.example .env              # Edit with your database and Redis credentials
+cp .env.example .env              # Preconfigured for zero-setup SQLite; edit if using PostgreSQL/Redis
 
-# Initialize database
+# Initialize database (creates local SQLite instance/selene.db by default)
 flask db upgrade
 
-# Run tests (29 integration tests)
-pytest
+# Run tests (37 unit, integration, and edge-case tests)
+pytest backend/test_backend.py backend/test_edge_cases.py
 
 # Start development server
-flask run
+flask run                         # Alternatively: python app.py
 ```
 
 ### Frontend
@@ -272,6 +272,7 @@ flask run
 ```bash
 cd frontend
 npm install
+npm test                          # Run client cryptography unit tests (Vitest)
 npm run dev                       # Starts on http://localhost:5173
 ```
 
@@ -307,11 +308,30 @@ sudo systemctl restart nginx
 
 ### CI/CD
 
-Every push to `main` or `staging` triggers a GitHub Actions pipeline that:
-1. Spins up a PostgreSQL 15 service container
-2. Installs dependencies and runs the full 29-test backend suite
-3. Builds production frontend assets with Vite
-4. Deploys to staging via SCP (when SSH secrets are configured)
+Continuous integration runs on every push and pull request via GitHub Actions:
+1. Provisions PostgreSQL 15 and matrix-tests Python 3.11 & 3.12 across all 37 backend tests
+2. Tests Node.js 20 & 22, verifying client-side cryptography invariants and production Vite builds
+3. Pushes to `staging` or `main` optionally trigger staging deployments via SSH
+
+---
+
+## Security Policy
+
+Selene treats user privacy as a foundational architectural invariant. For vulnerability disclosure guidelines, cryptographic scope, and safe harbor commitments, please consult our [Security Policy](SECURITY.md).
+
+---
+
+## Community & Contributing
+
+We welcome contributions from clinicians, privacy advocates, and developers!
+- Please read our [Contributing Guide](CONTRIBUTING.md) to set up your environment and understand our zero-knowledge constraints.
+- All participants are expected to adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+---
+
+## License
+
+This project is open-source software licensed under the [MIT License](LICENSE). Copyright © 2026 Sharanya Nagar and Selene Contributors.
 
 ---
 

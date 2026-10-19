@@ -12,18 +12,25 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     
     # Database URI - target PostgreSQL (Neon DB / local), fallback to local SQLite
-    _db_url = os.environ.get('DATABASE_URL') or 'postgresql://postgres:admin@localhost:5432/selene'
-    if _db_url.startswith('postgres://'):
+    _db_url = os.environ.get('DATABASE_URL')
+    if not _db_url or not _db_url.strip():
+        _instance_dir = os.path.join(basedir, 'instance')
+        os.makedirs(_instance_dir, exist_ok=True)
+        _db_url = f"sqlite:///{os.path.join(_instance_dir, 'selene.db')}"
+    elif _db_url.startswith('postgres://'):
         _db_url = _db_url.replace('postgres://', 'postgresql://', 1)
     SQLALCHEMY_DATABASE_URI = _db_url
     
-    # Connection pooling configuration for PostgreSQL in production
-    SQLALCHEMY_ENGINE_OPTIONS = {
-        "pool_size": int(os.environ.get("DATABASE_POOL_SIZE", 10)),
-        "max_overflow": int(os.environ.get("DATABASE_MAX_OVERFLOW", 20)),
-        "pool_timeout": 30,
-        "pool_recycle": 1800,
-    }
+    # Connection pooling configuration for PostgreSQL in production (ignored for SQLite)
+    if not _db_url.startswith('sqlite'):
+        SQLALCHEMY_ENGINE_OPTIONS = {
+            "pool_size": int(os.environ.get("DATABASE_POOL_SIZE", 10)),
+            "max_overflow": int(os.environ.get("DATABASE_MAX_OVERFLOW", 20)),
+            "pool_timeout": 30,
+            "pool_recycle": 1800,
+        }
+    else:
+        SQLALCHEMY_ENGINE_OPTIONS = {}
     
     # Silence Flask-SQLAlchemy tracking overhead
     SQLALCHEMY_TRACK_MODIFICATIONS = False

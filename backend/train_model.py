@@ -8,7 +8,7 @@ from sklearn.model_selection import GroupShuffleSplit
 from sklearn.metrics import mean_squared_error, r2_score
 
 def load_and_preprocess_marquette_data():
-    csv_path = os.path.join(os.path.dirname(__file__), 'dataset', 'FedCycleData071012 (2).csv')
+    csv_path = os.path.join(os.path.dirname(__file__), 'dataset', 'FedCycleData071012.csv')
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"Dataset not found at {csv_path}")
 

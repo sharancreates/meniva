@@ -6,6 +6,9 @@ on:
       - main
       - staging
 
+permissions:
+  contents: read
+
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
@@ -41,18 +44,17 @@ jobs:
       - name: Install backend requirements
         run: |
           python -m pip install --upgrade pip
-          pip install -r backend/requirements.txt pytest
-
+          pip install -r backend/requirements.txt
 
       # 4. Run Backend Tests
       - name: Run Pytest suite
         env:
           DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/selene_test
           SECRET_KEY: test-secret-key-for-jwt-and-signing
-          FLASK_ENV: testing
+          TESTING: 'True'
+          FLASK_DEBUG: 'false'
         run: |
-          pytest backend/test_backend.py
-
+          pytest backend/test_backend.py backend/test_edge_cases.py -v
 
       # 5. Setup Node.js environment
       - name: Set up Node.js 22
@@ -66,7 +68,8 @@ jobs:
       - name: Build Frontend Assets
         run: |
           cd frontend
-          npm install
+          npm ci
+          npm run test
           npm run build
 
   deploy-staging:
@@ -82,10 +85,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Example deploy step: Deploying via SSH & Rsync
+      # Deploying via SSH & Rsync
       - name: Deploy to Remote Staging Host
         if: env.STAGING_HOST != ''
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ env.STAGING_HOST }}
           username: ${{ env.STAGING_USER }}
@@ -96,7 +99,7 @@ jobs:
       # Trigger deployment hook or restart app server
       - name: Restart Gunicorn Server
         if: env.STAGING_HOST != ''
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ env.STAGING_HOST }}
           username: ${{ env.STAGING_USER }}

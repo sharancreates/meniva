@@ -36,6 +36,8 @@ selene/
 | [`analysis_results.md`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/analysis_results.md) | Technical critique and audit. Details machine learning performance metrics ($R^2$, RMSE), root cause analysis of synthetic data limitations, cryptographic audit findings, and concrete improvements. |
 | [`CONTRIBUTING.md`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/CONTRIBUTING.md) | **Contributor Guidelines**. Step-by-step instructions for contributors on local setup, zero-knowledge constraints, running tests, branch workflows, and responsible security disclosure. |
 | [`CODE_OF_CONDUCT.md`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/CODE_OF_CONDUCT.md) | **Community Standards**. Contributor Covenant v2.1 detailing pledge, standards, enforcement responsibilities, and guidelines. |
+| [`SECURITY.md`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/SECURITY.md) | **Security & Responsible Disclosure Policy**. Threat model, client-side zero-knowledge boundaries, vulnerability reporting procedures, and safe harbor terms. |
+| [`LICENSE`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/LICENSE) | **Open-Source License**. Full text of the MIT License granting open distribution, modification, and private/commercial rights with standard liability disclaimers. |
 | [`FILE_DIRECTORY.md`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/FILE_DIRECTORY.md) | *(This file)* Master index documenting the role of every file and directory across the Selene project. |
 | [`.gitignore`](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/.gitignore) | Git ignore specification for development environments, preventing sensitive files (`.env`), build artifacts (`dist/`), dependencies (`node_modules/`, `venv/`), and databases (`*.db`) from committing. |
 

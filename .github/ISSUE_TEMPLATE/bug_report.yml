@@ -1,0 +1,65 @@
+name: Bug Report
+description: Create a report to help us improve Selene
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue! Please do not disclose personal health records, passwords, or active secrets in this report.
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the problem...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Provide step-by-step instructions to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or Logs
+      description: Drag and drop screenshots or paste sanitized console logs here.
+  - type: dropdown
+    id: database
+    attributes:
+      label: Database Target
+      options:
+        - SQLite (Local development default)
+        - PostgreSQL (Local)
+        - Neon Cloud PostgreSQL
+        - Other / Not Applicable
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Browser version, Node.js / Python version, Operating System.
+      placeholder: e.g. Chrome 124, Python 3.11, Windows 11 / Ubuntu 22.04
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety & Privacy Confirmation
+      options:
+        - label: I have verified that this report contains NO unencrypted personal health data, passwords, or live tokens.
+          required: true

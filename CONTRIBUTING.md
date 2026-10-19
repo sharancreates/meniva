@@ -102,18 +102,24 @@ cd selene
 
 ## 🧪 Running Tests
 
-All pull requests must pass existing and newly added automated tests.
+All pull requests must pass existing and newly added automated tests before merging.
 
 ### Backend Tests (Pytest)
 ```bash
 cd backend
-python -m pytest test_backend.py -v
+python -m pytest test_backend.py test_edge_cases.py -v
 ```
 
-### Frontend Tests (Jest / Unit Tests)
+### Frontend Tests (Vitest)
 ```bash
 cd frontend
 npm test
+```
+
+### Frontend Production Asset Build
+```bash
+cd frontend
+npm run build
 ```
 
 ---
@@ -128,11 +134,11 @@ npm test
    git checkout -b fix/issue-description
    ```
 3. **Follow Code Standards**:
-   - **Python**: Follow PEP 8 style guidelines. Keep endpoints documented.
-   - **JavaScript / React**: Use functional components with hooks. Maintain responsive, calming UI design without aggressive alert colors.
-   - **Privacy First**: Never log or serialize unencrypted symptom or user identification data.
+   - **Python**: Follow PEP 8 style guidelines. Ensure type hints and docstrings are maintained.
+   - **JavaScript / React**: Functional components with hooks. Maintain responsive, calming UI design without aggressive alert colors.
+   - **Privacy First**: Never log, serialize, or transmit unencrypted symptom or user identification data.
 4. **Commit Your Changes**:
-   Write clear, semantic commit messages:
+   Write clear, conventional commit messages:
    ```bash
    git commit -m "feat(insights): add biphasic BBT shift detection"
    ```
@@ -148,7 +154,7 @@ npm test
 
 If you discover a security vulnerability—especially regarding the cryptographic envelope, key derivation, or token handling—**please do not open a public GitHub issue**.
 
-Instead, privately disclose the vulnerability to the maintainers via email or GitHub's Private Security Advisory feature. We take all cryptographic and privacy vulnerabilities with utmost urgency.
+Please review our [Security Policy](SECURITY.md) and report vulnerabilities via GitHub Private Security Advisories or by emailing `security@selenehealth.org`. All reports receive immediate attention.
 
 ---
 
