@@ -88,7 +88,7 @@ jobs:
       # Deploying via SSH & Rsync
       - name: Deploy to Remote Staging Host
         if: env.STAGING_HOST != ''
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ env.STAGING_HOST }}
           username: ${{ env.STAGING_USER }}
