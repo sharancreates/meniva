@@ -4,17 +4,17 @@
 @theme {
   --font-sans: 'Outfit', sans-serif;
   --font-handwriting: 'Caveat', cursive;
-  --color-selene-beige: #e4ccb5;
-  --color-selene-brown: #865538;
-  --color-selene-brown-light: #9d6b49;
-  --color-selene-dark: #1c1a1a;
-  --color-selene-gray: #c9caca;
+  --color-meniva-beige: #e4ccb5;
+  --color-meniva-brown: #865538;
+  --color-meniva-brown-light: #9d6b49;
+  --color-meniva-dark: #1c1a1a;
+  --color-meniva-gray: #c9caca;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background-color: var(--color-selene-beige);
+  background-color: var(--color-meniva-beige);
   color: #333;
 }
 

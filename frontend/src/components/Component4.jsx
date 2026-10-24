@@ -8,7 +8,7 @@ const features = [
   },
   {
     id: 1,
-    text: "Selene's on-device machine learning doesn't just count days. It learns your unique physiological markers—like basal body temperature and pain types—to map unpredictable cycles, PCOS, and Endometriosis",
+    text: "Meniva's on-device machine learning doesn't just count days. It learns your unique physiological markers—like basal body temperature and pain types—to map unpredictable cycles, PCOS, and Endometriosis",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export default function Component4() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[60vh] bg-[var(--color-selene-beige)] flex flex-col items-center justify-center p-6 sm:p-12 overflow-hidden">
+    <section className="relative w-full min-h-[60vh] bg-[var(--color-meniva-beige)] flex flex-col items-center justify-center p-6 sm:p-12 overflow-hidden">
       
       {/* Subtle animated background elements */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -44,7 +44,7 @@ export default function Component4() {
               repeat: Infinity,
               delay: Math.random() * 2,
             }}
-            className="absolute bg-[var(--color-selene-brown)] rounded-full"
+            className="absolute bg-[var(--color-meniva-brown)] rounded-full"
             style={{
               width: Math.random() * 4 + 2 + 'px',
               height: Math.random() * 4 + 2 + 'px',
@@ -92,8 +92,8 @@ export default function Component4() {
               <span 
                 className={`absolute inset-0 rounded-full transition-all duration-300 ${
                   idx === activeIndex 
-                    ? 'bg-[var(--color-selene-brown)] scale-125 shadow-[0_0_8px_rgba(134,85,56,0.4)]' 
-                    : 'bg-[var(--color-selene-brown)]/30 hover:bg-[var(--color-selene-brown)]/50'
+                    ? 'bg-[var(--color-meniva-brown)] scale-125 shadow-[0_0_8px_rgba(134,85,56,0.4)]' 
+                    : 'bg-[var(--color-meniva-brown)]/30 hover:bg-[var(--color-meniva-brown)]/50'
                 }`} 
               />
             </button>

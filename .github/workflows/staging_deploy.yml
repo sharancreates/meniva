@@ -1,4 +1,4 @@
-name: Selene Staging Deploy CI/CD
+name: Meniva Staging Deploy CI/CD
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_DB: selene_test
+          POSTGRES_DB: meniva_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: testpassword
         ports:
@@ -49,7 +49,7 @@ jobs:
       # 4. Run Backend Tests
       - name: Run Pytest suite
         env:
-          DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/selene_test
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/meniva_test
           SECRET_KEY: test-secret-key-for-jwt-and-signing
           TESTING: 'True'
           FLASK_DEBUG: 'false'
@@ -94,7 +94,7 @@ jobs:
           username: ${{ env.STAGING_USER }}
           key: ${{ env.STAGING_SSH_KEY }}
           source: "."
-          target: "/var/www/selene"
+          target: "/var/www/meniva"
 
       # Trigger deployment hook or restart app server
       - name: Restart Gunicorn Server
@@ -105,12 +105,12 @@ jobs:
           username: ${{ env.STAGING_USER }}
           key: ${{ env.STAGING_SSH_KEY }}
           script: |
-            cd /var/www/selene
+            cd /var/www/meniva
             source venv/bin/activate
             pip install -r backend/requirements.txt
             cd backend
             FLASK_APP=app.py flask db upgrade
-            sudo systemctl restart selene
+            sudo systemctl restart meniva
 
 
 

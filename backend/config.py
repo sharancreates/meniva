@@ -16,7 +16,7 @@ class Config:
     if not _db_url or not _db_url.strip():
         _instance_dir = os.path.join(basedir, 'instance')
         os.makedirs(_instance_dir, exist_ok=True)
-        _db_url = f"sqlite:///{os.path.join(_instance_dir, 'selene.db')}"
+        _db_url = f"sqlite:///{os.path.join(_instance_dir, 'meniva.db')}"
     elif _db_url.startswith('postgres://'):
         _db_url = _db_url.replace('postgres://', 'postgresql://', 1)
     SQLALCHEMY_DATABASE_URI = _db_url

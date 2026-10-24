@@ -71,10 +71,10 @@ const getCookie = (name) => {
       
       const data = await response.json();
       if (response.ok) {
-        // ADD this line to persist the camouflage mode setting
-        localStorage.setItem('selene_camouflage_mode', camouflageMode ? 'true' : 'false');
-        sessionStorage.setItem('selene_session_key', kek_pin);
-        sessionStorage.setItem('selene_dek', data.dek);
+        // Persist the camouflage mode setting
+        localStorage.setItem('meniva_camouflage_mode', camouflageMode ? 'true' : 'false');
+        sessionStorage.setItem('meniva_session_key', kek_pin);
+        sessionStorage.setItem('meniva_dek', data.dek);
         
         setRegUserData(data.user);
         setRegToken(data.token || '');
@@ -98,7 +98,7 @@ const getCookie = (name) => {
 
   if (recoveryKey) {
     return (
-      <section className="relative w-full min-h-screen bg-[var(--color-selene-beige)] flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
+      <section className="relative w-full min-h-screen bg-[var(--color-meniva-beige)] flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
         <div className="relative z-10 w-full max-w-lg bg-[#df9b6d] rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border border-white/10 flex flex-col items-center text-center">
           <h3 className="text-3xl font-black text-black mb-4 font-serif">Save Your Recovery Key</h3>
           <p className="text-sm text-black mb-6 leading-relaxed">
@@ -132,13 +132,13 @@ const getCookie = (name) => {
   }
 
   return (
-    <section className="relative w-full min-h-screen bg-[var(--color-selene-beige)] flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-[var(--color-meniva-beige)] flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
       
       {/* Background Stars - positioned according to the mockup */}
       <div className="absolute inset-0 pointer-events-none select-none">
         {/* Top Left Star */}
         <motion.div 
-          className="absolute top-[12%] left-[10%] text-[var(--color-selene-brown)]"
+          className="absolute top-[12%] left-[10%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
           transition={{ duration: 4, repeat: Infinity }}
         >
@@ -147,7 +147,7 @@ const getCookie = (name) => {
         
         {/* Far Left Star */}
         <motion.div 
-          className="absolute top-[42%] left-[5%] text-[var(--color-selene-brown)]"
+          className="absolute top-[42%] left-[5%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5, repeat: Infinity, delay: 1 }}
         >
@@ -156,7 +156,7 @@ const getCookie = (name) => {
 
         {/* Bottom Left Star */}
         <motion.div 
-          className="absolute bottom-[28%] left-[12%] text-[var(--color-selene-brown)]"
+          className="absolute bottom-[28%] left-[12%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 4.5, repeat: Infinity, delay: 0.5 }}
         >
@@ -165,7 +165,7 @@ const getCookie = (name) => {
 
         {/* Star Below the Moon (approx center-left-bottom) */}
         <motion.div 
-          className="absolute bottom-[8%] left-[42%] text-[var(--color-selene-brown)]"
+          className="absolute bottom-[8%] left-[42%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0.9, 0.6] }}
           transition={{ duration: 4.3, repeat: Infinity, delay: 0.2 }}
         >
@@ -174,7 +174,7 @@ const getCookie = (name) => {
 
         {/* Top Right Star */}
         <motion.div 
-          className="absolute top-[20%] right-[16%] text-[var(--color-selene-brown)]"
+          className="absolute top-[20%] right-[16%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.9, 0.6] }}
           transition={{ duration: 4.8, repeat: Infinity, delay: 1.5 }}
         >
@@ -183,7 +183,7 @@ const getCookie = (name) => {
 
         {/* Mid Right Star */}
         <motion.div 
-          className="absolute top-[50%] right-[16%] text-[var(--color-selene-brown)]"
+          className="absolute top-[50%] right-[16%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 4.2, repeat: Infinity }}
         >
@@ -192,7 +192,7 @@ const getCookie = (name) => {
 
         {/* Bottom Right Star (above placeholder) */}
         <motion.div 
-          className="absolute bottom-[22%] right-[26%] text-[var(--color-selene-brown)]"
+          className="absolute bottom-[22%] right-[26%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5.2, repeat: Infinity, delay: 0.8 }}
         >
@@ -210,7 +210,7 @@ const getCookie = (name) => {
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl font-black text-black text-center tracking-tight mb-8"
         >
-          Welcome to <span className="font-sans uppercase tracking-widest text-2xl sm:text-3xl block sm:inline mt-2 sm:mt-0 ml-0 sm:ml-2">SELENE</span>
+          Welcome to <span className="font-sans uppercase tracking-widest text-2xl sm:text-3xl block sm:inline mt-2 sm:mt-0 ml-0 sm:ml-2">MENIVA</span>
         </motion.h2>
 
         {/* Form and Moon container */}
@@ -302,7 +302,7 @@ const getCookie = (name) => {
                   className="w-10 h-5 rounded-full bg-[#d2d2d2] relative transition-colors duration-200 focus:outline-none cursor-pointer"
                 >
                   <motion.div
-                    className="w-4 h-4 rounded-full bg-[var(--color-selene-brown)] absolute top-0.5"
+                    className="w-4 h-4 rounded-full bg-[var(--color-meniva-brown)] absolute top-0.5"
                     animate={{ left: camouflageMode ? '22px' : '2px' }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
@@ -343,11 +343,11 @@ const getCookie = (name) => {
         className="absolute bottom-0 right-0 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] pointer-events-none select-none z-20"
       >
         <div className="w-full h-full flex items-end justify-end p-4">
-          <div className="border-2 border-dashed border-[var(--color-selene-brown)]/40 bg-[var(--color-selene-beige)]/90 backdrop-blur-sm rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-lg w-[85%] h-[75%] sm:w-[80%] sm:h-[70%]">
-            <svg viewBox="0 0 24 24" className="w-12 h-12 text-[var(--color-selene-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <div className="border-2 border-dashed border-[var(--color-meniva-brown)]/40 bg-[var(--color-meniva-beige)]/90 backdrop-blur-sm rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-lg w-[85%] h-[75%] sm:w-[80%] sm:h-[70%]">
+            <svg viewBox="0 0 24 24" className="w-12 h-12 text-[var(--color-meniva-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
-            <p className="font-handwriting text-[var(--color-selene-brown)] text-lg leading-tight">
+            <p className="font-handwriting text-[var(--color-meniva-brown)] text-lg leading-tight">
               [Illustration Placeholder:<br/>Girl reading a book]
             </p>
           </div>
@@ -356,14 +356,14 @@ const getCookie = (name) => {
 
       {/* Footer */}
       <div className="absolute bottom-0 left-0 w-full z-30">
-        <div className="w-full bg-[var(--color-selene-brown)] py-6 px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <span className="font-handwriting text-white text-xl tracking-wider">SELENE</span>
+        <div className="w-full bg-[var(--color-meniva-brown)] py-6 px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <span className="font-handwriting text-white text-xl tracking-wider">MENIVA</span>
           <div className="flex gap-6 font-handwriting text-white/80 text-lg">
             <span className="hover:text-white cursor-pointer transition-colors">privacy manifesto</span>
             <span className="hover:text-white cursor-pointer transition-colors">github</span>
             <span className="hover:text-white cursor-pointer transition-colors">contact</span>
           </div>
-          <span className="font-handwriting text-white/50 text-sm">© 2026 selene</span>
+          <span className="font-handwriting text-white/50 text-sm">© 2026 meniva</span>
         </div>
       </div>
 
@@ -387,7 +387,7 @@ const getCookie = (name) => {
 
             <div className="font-sans text-sm text-[#362113]/90 leading-relaxed flex flex-col gap-3 max-h-60 overflow-y-auto pr-2 bg-white/20 p-4 rounded-2xl border border-black/5">
               <p>
-                Selene is designed to prioritize your privacy above all else. Under the Digital Personal Data Protection (DPDP) Act, we require your explicit, informed consent to collect and process your personal health information.
+                Meniva is designed to prioritize your privacy above all else. Under the Digital Personal Data Protection (DPDP) Act, we require your explicit, informed consent to collect and process your personal health information.
               </p>
               <p>
                 <strong>1. Processing Purpose:</strong> We process your cycle dates, symptoms (flow, cramps, energy, pain, sleep), and Basal Body Temperature (BBT) solely to render your daily health logs and generate personalized cycle forecasts and anomaly warnings.
@@ -438,7 +438,7 @@ const getCookie = (name) => {
                   onChange={(e) => setConsentTerms(e.target.checked)}
                   className="w-4 h-4 rounded border-black/20 text-[#8ba68b] focus:ring-transparent mt-0.5"
                 />
-                <span className="leading-tight">I consent and agree to the Terms and Conditions of Selene, including the cryptographic data boundaries and privacy manifesto.</span>
+                <span className="leading-tight">I consent and agree to the Terms and Conditions of Meniva, including the cryptographic data boundaries and privacy manifesto.</span>
               </label>
 
               {consentTerms && (

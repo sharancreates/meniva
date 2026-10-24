@@ -1,5 +1,5 @@
 #!/bin/bash
-# Selene Production Startup Script
+# Meniva Production Startup Script
 # Target Environment: POSIX / Linux VM (e.g. AWS EC2, GCP Compute Engine)
 
 # Move to backend directory

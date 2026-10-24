@@ -93,7 +93,7 @@ function MonthCalendar({
       {/* Month Header */}
       <div className="flex justify-between items-center mb-6">
         <span className={`font-handwriting text-2xl sm:text-3xl font-bold tracking-wide ${
-          darkCalendar ? "text-[#df9b6d]" : "text-[var(--color-selene-brown)]"
+          darkCalendar ? "text-[#df9b6d]" : "text-[var(--color-meniva-brown)]"
         }`}>
           {monthNames[month]} {year}
         </span>
@@ -184,14 +184,14 @@ export default function CalendarView({
   const [prediction, setPrediction] = useState(null);
   const [activeDate, setActiveDate] = useState(selectedDate || todayDateStr);
   const [darkCalendar, setDarkCalendar] = useState(() => {
-    const saved = localStorage.getItem('selene_dark_calendar');
+    const saved = localStorage.getItem('meniva_dark_calendar');
     return saved === null ? true : saved === 'true';
   });
 
   const toggleCalendarTheme = () => {
     setDarkCalendar(prev => {
       const next = !prev;
-      localStorage.setItem('selene_dark_calendar', String(next));
+      localStorage.setItem('meniva_dark_calendar', String(next));
       return next;
     });
   };
@@ -215,7 +215,7 @@ export default function CalendarView({
         
         const logsData = await logsRes.json();
         if (logsRes.ok && logsData.logs) {
-          const dek = sessionStorage.getItem('selene_dek');
+          const dek = sessionStorage.getItem('meniva_dek');
           const processedLogs = [];
           for (const log of logsData.logs) {
             if (log.encrypted_data && dek) {
@@ -345,7 +345,7 @@ export default function CalendarView({
           onClick={() => setView('landing')}
           className="text-2xl font-black text-black tracking-widest hover:opacity-80 transition-opacity cursor-pointer mb-4 md:mb-0 focus:outline-none"
         >
-          SELENE
+          MENIVA
         </button>
 
         <div className="flex flex-col items-center text-center mb-4 md:mb-0">
@@ -633,14 +633,14 @@ export default function CalendarView({
 function AppFooter() {
   return (
     <footer className="w-full mt-auto">
-      <div className="w-full bg-[var(--color-selene-brown)] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <span className="font-handwriting text-white text-xl tracking-wider">SELENE</span>
+      <div className="w-full bg-[var(--color-meniva-brown)] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <span className="font-handwriting text-white text-xl tracking-wider">MENIVA</span>
         <div className="flex gap-6 font-handwriting text-white/80 text-lg">
           <span className="hover:text-white cursor-pointer transition-colors">privacy manifesto</span>
           <span className="hover:text-white cursor-pointer transition-colors">github</span>
           <span className="hover:text-white cursor-pointer transition-colors">contact</span>
         </div>
-        <span className="font-handwriting text-white/50 text-sm">© 2026 selene</span>
+        <span className="font-handwriting text-white/50 text-sm">© 2026 meniva</span>
       </div>
     </footer>
   );

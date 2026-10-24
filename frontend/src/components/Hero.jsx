@@ -35,7 +35,7 @@ export default function Hero({ setView }) {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-6xl md:text-8xl font-black text-black tracking-tighter uppercase mb-6 drop-shadow-md">
-            SELENE
+            MENIVA
           </h1>
           <p className="text-lg md:text-xl text-black/80 font-medium leading-relaxed mb-8 max-w-md">
             A privacy-first, locally-intelligent tracker built specifically for irregular cycles, PMDD, and PCOS. Your data never leaves your hands.
@@ -47,7 +47,7 @@ export default function Hero({ setView }) {
             whileTap={{ scale: 0.95 }}
             className="bg-[#4d5b4a] hover:bg-[#3d493a] text-white font-handwriting text-2xl px-10 py-4 rounded-full shadow-xl flex items-center gap-2 transition-colors duration-300 cursor-pointer"
           >
-            Explore SELENE
+            Explore MENIVA
           </motion.button>
         </motion.div>
 

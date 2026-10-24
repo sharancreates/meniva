@@ -39,7 +39,7 @@ def handle_pipeline_error(error):
 
 
 # Absolute path for the compiled ML model binary
-MODEL_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'selene_model.joblib')
+MODEL_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'meniva_model.joblib')
 METRICS_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'model_metrics.json')
 
 # In-memory model cache variables
@@ -49,7 +49,7 @@ _cached_model_mtime = None
 def get_loaded_model():
     """
     Returns the cached scikit-learn model object, automatically reloading from disk 
-    only if selene_model.joblib has been updated/modified.
+    only if meniva_model.joblib has been updated/modified.
     """
     global _cached_model, _cached_model_mtime
     if not os.path.exists(MODEL_PATH):
@@ -154,11 +154,11 @@ def predict_next_cycle():
                 days_until = baseline_cycle
 
             insight = f"Calibration mode active: {get_empathetic_insight(current_phase_est, user)}"
-            disclaimer_text = "MEDICAL DISCLAIMER: Selene is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
+            disclaimer_text = "MEDICAL DISCLAIMER: Meniva is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
 
             return jsonify({
                 "status": "calibrating",
-                "message": f"Selene is currently in calibration. You have recorded {len(df)}/10 total entries in your history. Please log {10 - len(df)} more entries to enable adaptive ML tracking.",
+                "message": f"Meniva is currently in calibration. You have recorded {len(df)}/10 total entries in your history. Please log {10 - len(df)} more entries to enable adaptive ML tracking.",
                 "prediction": {
                     "next_period_date": None,
                     "estimated_phase": current_phase_est,
@@ -276,7 +276,7 @@ def predict_next_cycle():
         else:
             prediction_std = 2.0  # Default standard error fallback
 
-        disclaimer_text = "MEDICAL DISCLAIMER: Selene is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
+        disclaimer_text = "MEDICAL DISCLAIMER: Meniva is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
 
         return jsonify({
             "status": "success",
@@ -407,7 +407,7 @@ def detect_anomalies():
                 "status": "calibrating",
                 "message": f"Fewer than 10 logs logged. Isolation Forest anomaly calibration requires at least 10 log entries (currently {len(df)}).",
                 "anomalies": [],
-                "medical_disclaimer": "MEDICAL DISCLAIMER: Selene anomaly detection is not diagnostic advice."
+                "medical_disclaimer": "MEDICAL DISCLAIMER: Meniva anomaly detection is not diagnostic advice."
             }), 200
             
         last_log_str = df['log_date'].iloc[-1].isoformat()
@@ -456,7 +456,7 @@ def detect_anomalies():
                 _anomaly_cache.clear()
             _anomaly_cache[cache_key] = anomalies
                     
-        disclaimer_text = "MEDICAL DISCLAIMER: Selene anomaly detection is based on mathematical models and is not diagnostic advice."
+        disclaimer_text = "MEDICAL DISCLAIMER: Meniva anomaly detection is based on mathematical models and is not diagnostic advice."
         return jsonify({
             "status": "success",
             "anomalies": anomalies,

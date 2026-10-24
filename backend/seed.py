@@ -20,7 +20,7 @@ def seed_data():
     ph = PasswordHasher()
 
     with app.app_context():
-        print("Initializing Selene Demo Data Seeder...")
+        print("Initializing Meniva Demo Data Seeder...")
         
         # 1. Clean up existing demouser to keep script idempotent
         username = "demouser"
@@ -43,7 +43,7 @@ def seed_data():
         cipher_pin = Fernet(kek_pin.encode())
         encrypted_dek_pin = cipher_pin.encrypt(dek.encode()).decode()
         
-        recovery_key = "selene-recovery-" + secrets.token_hex(16)
+        recovery_key = "meniva-recovery-" + secrets.token_hex(16)
         recovery_hash = ph.hash(recovery_key)
         
         kek_recovery = derive_kek_server(recovery_key, username, is_recovery=True)

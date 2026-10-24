@@ -30,7 +30,7 @@ export default function CamouflageSection() {
               className="bg-[#9d6b49] rounded-2xl p-4 text-center shadow-md transform -rotate-2"
             >
               <p className="font-handwriting text-white text-lg">
-                This is not a calculator. This is SELENE-- disguised as calc!
+                This is not a calculator. This is MENIVA-- disguised as calc!
               </p>
             </motion.div>
             
@@ -59,7 +59,7 @@ export default function CamouflageSection() {
             className="bg-[#9d6b49] rounded-[2rem] p-8 shadow-lg w-full max-w-lg self-end"
           >
             <p className="font-handwriting text-white text-xl md:text-2xl text-center leading-relaxed">
-              Enable Camouflage Mode to disguise Selene as a functional calculator or weather app. Because in spaces where privacy is a privilege, your safety should be a guarantee.
+              Enable Camouflage Mode to disguise Meniva as a functional calculator or weather app. Because in spaces where privacy is a privilege, your safety should be a guarantee.
             </p>
           </motion.div>
 
@@ -71,10 +71,10 @@ export default function CamouflageSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             {/* App UI Placeholders */}
-            <div className="flex-1 bg-[var(--color-selene-gray)] rounded-xl flex items-center justify-center opacity-80 backdrop-blur-sm shadow-inner">
+            <div className="flex-1 bg-[var(--color-meniva-gray)] rounded-xl flex items-center justify-center opacity-80 backdrop-blur-sm shadow-inner">
                <span className="font-handwriting text-black/50 text-xl rotate-[-90deg] md:rotate-0 text-center px-4">app ui placeholders</span>
             </div>
-            <div className="flex-1 bg-[var(--color-selene-gray)] rounded-xl opacity-80 backdrop-blur-sm shadow-inner"></div>
+            <div className="flex-1 bg-[var(--color-meniva-gray)] rounded-xl opacity-80 backdrop-blur-sm shadow-inner"></div>
           </motion.div>
           
         </div>

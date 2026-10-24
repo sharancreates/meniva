@@ -34,7 +34,7 @@ function App() {
     if (path === '/calendar') return 'calendar';
     if (path === '/settings') return 'settings';
     if (path === '/public-health') return 'public-health';
-    return localStorage.getItem('selene_logged_in') === 'true' ? 'dashboard' : 'landing';
+    return localStorage.getItem('meniva_logged_in') === 'true' ? 'dashboard' : 'landing';
   };
 
   const [view, setViewInternal] = useState(getInitialView);
@@ -42,7 +42,7 @@ function App() {
   const [isAppLoading, setIsAppLoading] = useState(() => {
     const path = window.location.pathname;
     const isProtectedRoute = ['/dashboard', '/calendar', '/settings'].includes(path);
-    return isProtectedRoute || localStorage.getItem('selene_logged_in') === 'true';
+    return isProtectedRoute || localStorage.getItem('meniva_logged_in') === 'true';
   });
 
   const showToast = (message, type = 'info') => {
@@ -57,27 +57,27 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [toast]);
-  const [token, setToken] = useState(() => localStorage.getItem('selene_token') || '');
+  const [token, setToken] = useState(() => localStorage.getItem('meniva_token') || '');
   const [user, setUser] = useState(() => {
     try {
-      const savedUser = localStorage.getItem('selene_user');
+      const savedUser = localStorage.getItem('meniva_user');
       return savedUser ? JSON.parse(savedUser) : null;
     } catch {
       return null;
     }
   });
-  const [username, setUsername] = useState(() => localStorage.getItem('selene_username') || 'user');
+  const [username, setUsername] = useState(() => localStorage.getItem('meniva_username') || 'user');
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [isUnlocked, setIsUnlocked] = useState(() => {
-    if (sessionStorage.getItem('selene_unlocked') === 'true') return true;
-    const camo = localStorage.getItem('selene_camouflage_mode') === 'true';
-    const loggedIn = localStorage.getItem('selene_logged_in') === 'true';
+    if (sessionStorage.getItem('meniva_unlocked') === 'true') return true;
+    const camo = localStorage.getItem('meniva_camouflage_mode') === 'true';
+    const loggedIn = localStorage.getItem('meniva_logged_in') === 'true';
     return !loggedIn || !camo;
   });
 
   // Apply readability class to document body based on local storage setting on boot
   useEffect(() => {
-    const isReadable = localStorage.getItem('selene_readable_font') === 'true';
+    const isReadable = localStorage.getItem('meniva_readable_font') === 'true';
     if (isReadable) {
       document.body.classList.add('readable-typography');
     } else {
@@ -106,13 +106,13 @@ function App() {
     setToken('');
     setUser(null);
     setIsUnlocked(true);
-    localStorage.removeItem('selene_logged_in');
-    localStorage.removeItem('selene_token');
-    localStorage.removeItem('selene_user');
-    localStorage.removeItem('selene_username');
-    sessionStorage.removeItem('selene_session_key');
-    sessionStorage.removeItem('selene_dek');
-    sessionStorage.removeItem('selene_unlocked');
+    localStorage.removeItem('meniva_logged_in');
+    localStorage.removeItem('meniva_token');
+    localStorage.removeItem('meniva_user');
+    localStorage.removeItem('meniva_username');
+    sessionStorage.removeItem('meniva_session_key');
+    sessionStorage.removeItem('meniva_dek');
+    sessionStorage.removeItem('meniva_unlocked');
     window.history.replaceState({}, '', '/');
     setViewInternal('landing');
   };
@@ -147,15 +147,15 @@ function App() {
           setToken(data.token);
           setUser(data.user);
           setUsername(data.user.username);
-          localStorage.setItem('selene_logged_in', 'true');
-          localStorage.setItem('selene_token', data.token);
-          localStorage.setItem('selene_user', JSON.stringify(data.user));
-          localStorage.setItem('selene_username', data.user.username);
+          localStorage.setItem('meniva_logged_in', 'true');
+          localStorage.setItem('meniva_token', data.token);
+          localStorage.setItem('meniva_user', JSON.stringify(data.user));
+          localStorage.setItem('meniva_username', data.user.username);
           if (data.dek) {
-            sessionStorage.setItem('selene_dek', data.dek);
+            sessionStorage.setItem('meniva_dek', data.dek);
           }
-          const camo = localStorage.getItem('selene_camouflage_mode') === 'true';
-          const isSessionUnlocked = sessionStorage.getItem('selene_unlocked') === 'true';
+          const camo = localStorage.getItem('meniva_camouflage_mode') === 'true';
+          const isSessionUnlocked = sessionStorage.getItem('meniva_unlocked') === 'true';
           setIsUnlocked(isSessionUnlocked || !camo);
 
           // Restore the correct view for the current URL
@@ -168,7 +168,7 @@ function App() {
             window.history.replaceState({}, '', '/dashboard');
           }
         } else if (response.status === 401) {
-          const wasLoggedIn = localStorage.getItem('selene_logged_in') === 'true';
+          const wasLoggedIn = localStorage.getItem('meniva_logged_in') === 'true';
           if (wasLoggedIn) {
             await handleLogout();
           } else {
@@ -200,7 +200,7 @@ function App() {
       const path = window.location.pathname;
       const isProtectedRoute = ['/dashboard', '/calendar', '/settings'].includes(path);
 
-      if (localStorage.getItem('selene_logged_in') === 'true') {
+      if (localStorage.getItem('meniva_logged_in') === 'true') {
         await checkSession();
       } else if (isProtectedRoute) {
         setViewInternal('login');
@@ -212,7 +212,7 @@ function App() {
 
     // Refresh token every 10 minutes
     const interval = setInterval(() => {
-      if (!isAuthenticating.current && localStorage.getItem('selene_logged_in') === 'true') {
+      if (!isAuthenticating.current && (localStorage.getItem('meniva_logged_in') === 'true')) {
         checkSession();
       }
     }, 10 * 60 * 1000);
@@ -262,11 +262,11 @@ function App() {
     setUsername(name || 'user');
     setToken(tokenVal || '');
     setUser(userVal || null);
-    localStorage.setItem('selene_logged_in', 'true');
-    localStorage.setItem('selene_token', tokenVal || '');
-    localStorage.setItem('selene_user', JSON.stringify(userVal || {}));
-    localStorage.setItem('selene_username', name || 'user');
-    sessionStorage.setItem('selene_unlocked', 'true');
+    localStorage.setItem('meniva_logged_in', 'true');
+    localStorage.setItem('meniva_token', tokenVal || '');
+    localStorage.setItem('meniva_user', JSON.stringify(userVal || {}));
+    localStorage.setItem('meniva_username', name || 'user');
+    sessionStorage.setItem('meniva_unlocked', 'true');
     setIsUnlocked(true);
     setView('dashboard');
     // Allow checkSession again after a brief window
@@ -281,8 +281,8 @@ function App() {
 
   if (isAppLoading) {
     return (
-      <div className="w-full min-h-screen bg-[var(--color-selene-beige)] flex items-center justify-center">
-        <div className="text-2xl font-handwriting text-black animate-pulse">Loading Selene...</div>
+      <div className="w-full min-h-screen bg-[var(--color-meniva-beige)] flex items-center justify-center">
+        <div className="text-2xl font-handwriting text-black animate-pulse">Loading Meniva...</div>
       </div>
     );
   }
@@ -510,7 +510,7 @@ function CalculatorGuard({ token, username, onUnlock }) {
           });
           const data = await response.json();
           if (response.ok && data.unlocked) {
-            sessionStorage.setItem('selene_session_key', kek_pin);
+            sessionStorage.setItem('meniva_session_key', kek_pin);
             onUnlock();
             return;
           } else {

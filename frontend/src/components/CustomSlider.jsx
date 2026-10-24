@@ -19,7 +19,7 @@ export default function CustomSlider({
   return (
     <div className="flex flex-col gap-1 w-full group">
       <div className="flex justify-between items-center px-1">
-        <span className="font-handwriting text-black text-2xl font-bold tracking-wide transition-colors duration-200 group-hover:text-[var(--color-selene-brown)]">
+        <span className="font-handwriting text-black text-2xl font-bold tracking-wide transition-colors duration-200 group-hover:text-[var(--color-meniva-brown)]">
           {label}
         </span>
         {showValueBadge && (
@@ -34,7 +34,7 @@ export default function CustomSlider({
         <div className="absolute inset-x-0 h-2 bg-[#694b3a]/20 rounded-full overflow-hidden transition-all duration-300 group-hover:h-[9px]">
           {/* Active bar */}
           <div 
-            className="h-full bg-gradient-to-r from-[var(--color-selene-brown)] to-[var(--color-selene-brown-light)] rounded-full transition-all duration-100" 
+            className="h-full bg-gradient-to-r from-[var(--color-meniva-brown)] to-[var(--color-meniva-brown-light)] rounded-full transition-all duration-100" 
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -54,8 +54,8 @@ export default function CustomSlider({
         
         {/* Thumb */}
         <div 
-          className={`absolute w-5 h-5 bg-black rounded-full border-2 border-white pointer-events-none -translate-x-1/2 z-10 shadow-lg transition-all duration-200 group-hover:scale-125 group-hover:bg-[var(--color-selene-brown)] ${
-            isFocused ? 'ring-4 ring-[var(--color-selene-brown-light)]/40 scale-125' : ''
+          className={`absolute w-5 h-5 bg-black rounded-full border-2 border-white pointer-events-none -translate-x-1/2 z-10 shadow-lg transition-all duration-200 group-hover:scale-125 group-hover:bg-[var(--color-meniva-brown)] ${
+            isFocused ? 'ring-4 ring-[var(--color-meniva-brown-light)]/40 scale-125' : ''
           }`}
           style={{ left: `${percentage}%` }}
         />

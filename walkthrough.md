@@ -2,13 +2,13 @@
 
 ## Phase 1: Backend & Security Verification (Completed)
 
-Phase 1 established an empirical verification baseline for Selene's backend services, database environments, and cryptographic invariants.
+Phase 1 established an empirical verification baseline for MENIVA's backend services, database environments, and cryptographic invariants.
 
 ### 1. Automated Test Suite Baseline (`test_backend.py`)
 - **Execution Command:** `.\venv\Scripts\pytest.exe backend/test_backend.py -v`
 - **Results:** **28 Passed / 2 Failed** across 30 test cases (93.3% pass rate).
 - **Failures Cataloged for Phase 4 Remediation:**
-  1. `test_medical_disclaimer_prediction`: Windows `PermissionError` when attempting to rename `selene_model.joblib` during fixture teardown while an active file handle was open.
+  1. `test_medical_disclaimer_prediction`: Windows `PermissionError` when attempting to rename `MENIVA_model.joblib` during fixture teardown while an active file handle was open.
   2. `test_prediction_safeguard`: Calibration insight assertion expected `'calibration'` in `data['prediction']['insight']` for users with under 10 logs, but received an empathetic luteal phase insight.
 
 ### 2. Dual-Target Database & Fallback Validation
@@ -34,7 +34,7 @@ Phase 2 empirically verified clinical rule engines, ML prediction pipelines, dai
 - **ACOG Practice Bulletin Guidelines:** Confirmed identification of recurring non-menstrual pelvic pain clusters (`[CONDITION] Sustained Pain Distribution Profile`).
 
 ### 2. Machine Learning Predictions & Anomaly Pipeline (`predict.py`)
-- **Model In-Memory Caching:** Verified `get_loaded_model()` loads `selene_model.joblib` and avoids per-request disk reads.
+- **Model In-Memory Caching:** Verified `get_loaded_model()` loads `MENIVA_model.joblib` and avoids per-request disk reads.
 - **Model Metadata Endpoint (`/api/predict/model-info`):** Returns evaluation metrics ($R^2 = 0.854$, RMSE = 1.516 days).
 - **Inference & Fallbacks:** Verified `/api/predict/next-cycle` computes predictions and seamlessly activates fallback mathematical regression when feature dimensions differ.
 - **Isolation Forest Anomaly Screening (`/api/predict/anomalies`):** Detected multivariate outliers (symptom spikes and logging gaps) with appropriate medical disclaimers.

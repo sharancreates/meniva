@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SleepingIllustration() {
   return (
-    <svg viewBox="0 0 100 100" className="w-24 h-24 text-[var(--color-selene-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 100 100" className="w-24 h-24 text-[var(--color-meniva-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       {/* Crescent Moon */}
       <path d="M65 25 C50 25, 38 37, 38 52 C38 67, 50 79, 65 79 C53 79, 45 70, 45 52 C45 34, 53 25, 65 25 Z" fill="rgba(157, 142, 166, 0.2)" stroke="#9d8ea6" />
       {/* Clouds */}

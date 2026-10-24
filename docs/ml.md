@@ -1,4 +1,4 @@
-# Selene — ML Integration Roadmap
+# MENIVA — ML Integration Roadmap
 
 > Grounded in the **actual codebase** as of Phase 2 completion.  
 > Every suggestion maps directly to existing files, data columns, and hook points already in the project.
@@ -10,7 +10,7 @@
 | File | Current Role | ML Hook Present? |
 |---|---|---|
 | `pipeline.py` | Extracts logs → pandas DataFrame, imputes missing values, one-hot encodes phases | ✅ Yes — ready for model input |
-| `predict.py` | Tries to load `selene_model.joblib`; falls back to rule-based heuristics if absent | ✅ Yes — `MODEL_PATH` stub is live |
+| `predict.py` | Tries to load `MENIVA_model.joblib`; falls back to rule-based heuristics if absent | ✅ Yes — `MODEL_PATH` stub is live |
 | `insights_engine.py` | ~365 lines of deterministic `if/else` rule chains for cycle, mood, BBT, condition flags | ❌ No ML — pure heuristics |
 | `models.py` | `DailyLog` stores: `phase`, `energy_level`, `pelvic_pain`, `flow_intensity`, `back_pain`, `sleep_quality`, `basal_body_temp`, `mood_toggles` (JSON), `symptom_tags` (JSON), `lifestyle_actions` (JSON) | ✅ Rich structured data |
 
@@ -47,7 +47,7 @@ The mean of historical cycle lengths doesn't account for **systematic factors** 
 **`GradientBoostingRegressor`** or **`RandomForestRegressor`** (scikit-learn, already installed).  
 - Target: `next_cycle_length` (days)  
 - Train offline on public datasets (e.g. [Apple Women's Health Study](https://www.apple.com/wh-study/), [Clue Menstrual Health dataset](https://www.clue.com/en/period-science))  
-- Save as `selene_model.joblib` — the existing `MODEL_PATH` stub in `predict.py` will pick it up automatically
+- Save as `MENIVA_model.joblib` — the existing `MODEL_PATH` stub in `predict.py` will pick it up automatically
 
 ### Integration point
 `predict.py` line 65–88: already has the `if os.path.exists(MODEL_PATH)` block. **Zero new plumbing needed.**
@@ -284,7 +284,7 @@ Frontend: A "Tomorrow's Forecast" card on the Dashboard.
 
 ```
 Week 1:  Opportunity 1 — Train a GradientBoostingRegressor on public data,
-         drop it as selene_model.joblib. Zero frontend changes needed.
+         drop it as MENIVA_model.joblib. Zero frontend changes needed.
 
 Week 2:  Opportunity 5 — Add K-Means clustering to insights_engine.py.
          Expose a "symptom archetype" card in the Dashboard insights tab.
@@ -304,13 +304,13 @@ Month 3: Opportunity 3A — BBT signal processing with scipy.
 
 ## Privacy Architecture for On-Device ML
 
-Since Selene is a **privacy-first** platform, all ML models must follow this architecture:
+Since MENIVA is a **privacy-first** platform, all ML models must follow this architecture:
 
 ```
 ┌─────────────────────────────────────────────┐
 │  PUBLIC DATASET (offline)                   │
 │  → Train base model                        │
-│  → Serialize to selene_model.joblib         │
+│  → Serialize to MENIVA_model.joblib         │
 │  → Ship with application                   │
 └─────────────────────┬───────────────────────┘
                       │ Base model (generalises)
@@ -365,5 +365,5 @@ torch          # LSTM / Transformer for sequence modelling
 | `backend/ml/train_phase_classifier.py` | New | Offline training script for Opp. 2 |
 | `backend/predict.py` | Modify | Replace heuristic phase estimation with classifier |
 | `backend/insights_engine.py` | Modify | Replace hardcoded ratios with anomaly detection |
-| `backend/selene_model.joblib` | New artifact | Compiled model binary (not in git — in `.gitignore`) |
+| `backend/MENIVA_model.joblib` | New artifact | Compiled model binary (not in git — in `.gitignore`) |
 | `frontend/src/components/Dashboard.jsx` | Modify | Add symptom cluster card + tomorrow forecast card |

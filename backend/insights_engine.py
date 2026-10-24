@@ -28,10 +28,10 @@ def generate_insights(user):
             "insights": [
                 {
                     "title": "Insight Engine Calibrating",
-                    "message": f"Selene is calibrating ({len(logs)} of 7 total entries logged). Log {remaining} more day{'s' if remaining > 1 else ''} to unlock your personalized hormonal insights.",
+                    "message": f"Meniva is calibrating ({len(logs)} of 7 total entries logged). Log {remaining} more day{'s' if remaining > 1 else ''} to unlock your personalized hormonal insights.",
                     "category": "cycle",
                     "confidence": "low",
-                    "explanation": f"Selene requires a cumulative baseline of 7 total logged days to detect biological trends and hormonal patterns. You currently have {len(logs)} total entries recorded in your account history.",
+                    "explanation": f"Meniva requires a cumulative baseline of 7 total logged days to detect biological trends and hormonal patterns. You currently have {len(logs)} total entries recorded in your account history.",
                     "supporting_data": {
                         "status": "insufficient_data",
                         "days_logged": len(logs),
@@ -381,7 +381,7 @@ def generate_insights(user):
         })
 
     # Add medical disclaimer to all insights (standardizing keys)
-    disclaimer_text = "MEDICAL DISCLAIMER: Selene is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
+    disclaimer_text = "MEDICAL DISCLAIMER: Meniva is an educational tracking tool. It does not provide clinical diagnoses, medical treatments, or formal recommendations. Consult a licensed healthcare provider for medical concerns."
     for ins in insights:
         ins["medical_disclaimer"] = disclaimer_text
         if ins.get("category") == "condition":

@@ -1,6 +1,6 @@
 # Security Policy
 
-Selene is designed from the ground up as a **privacy-first, zero-knowledge menstrual and hormonal health platform**. We treat user health confidentiality, cryptographic integrity, and data sovereignty as fundamental rights.
+Meniva is designed from the ground up as a **privacy-first, zero-knowledge menstrual and hormonal health platform**. We treat user health confidentiality, cryptographic integrity, and data sovereignty as fundamental rights.
 
 ---
 
@@ -17,7 +17,7 @@ Only the latest release on the default branch receives active security updates a
 
 ## Cryptographic Threat Model & Security Boundaries
 
-Selene enforces a strict client-side envelope encryption architecture:
+Meniva enforces a strict client-side envelope encryption architecture:
 
 1. **Client-Side Envelope Encryption**:
    - Health observations, symptom ratings, cycle indicators, and personal notes are encrypted in the client's browser using AES-GCM (256-bit) before transmission over TLS.
@@ -39,7 +39,7 @@ If you discover a security vulnerability—especially involving cryptographic im
 1. **GitHub Security Advisories (Recommended)**:
    Navigate to the [Security Tab](../../security/advisories/new) of this repository and select **"Report a vulnerability"** to open a confidential draft advisory.
 2. **Email Disclosure**:
-   If private GitHub advisories are unavailable, please email the project maintainer at `security@selenehealth.org` (or open a minimal issue requesting private contact).
+   If private GitHub advisories are unavailable, please email the project maintainer at `security@menivahealth.org` (or open a minimal issue requesting private contact).
 
 ### What to Include in Your Report
 

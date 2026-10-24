@@ -1,6 +1,6 @@
-# Contributing to Selene 🌙
+# Contributing to Meniva 🌙
 
-Thank you for your interest in contributing to **Selene**! Selene is an open-source, privacy-first menstrual cycle tracking and hormonal health platform built on **zero-knowledge architecture**.
+Thank you for your interest in contributing to **Meniva**! Meniva is an open-source, privacy-first menstrual cycle tracking and hormonal health platform built on **zero-knowledge architecture**.
 
 By contributing, you help make reproductive health tracking safe, confidential, and medically sound for people everywhere.
 
@@ -27,8 +27,8 @@ Before writing code, please understand our strict cryptographic guarantee:
 ### 1. Fork & Clone Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/selene.git
-cd selene
+git clone https://github.com/YOUR-USERNAME/meniva.git
+cd meniva
 ```
 
 ### 2. Backend Setup
@@ -59,7 +59,7 @@ cd selene
    ```bash
    cp .env.example .env
    ```
-   *(By default, `.env` uses local SQLite `sqlite:///instance/selene.db` which requires zero cloud setup).*
+   *(By default, `.env` uses local SQLite `sqlite:///instance/meniva.db` which requires zero cloud setup).*
 
 5. **Run Database Migrations**:
    ```bash
@@ -126,7 +126,7 @@ npm run build
 
 ## 🌿 Contribution Workflow
 
-1. **Find or Open an Issue**: Check [Issues](https://github.com/sharancreates/selene/issues) first to discuss major architectural changes before starting work.
+1. **Find or Open an Issue**: Check [Issues](https://github.com/sharancreates/meniva/issues) first to discuss major architectural changes before starting work.
 2. **Create a Feature Branch**:
    ```bash
    git checkout -b feature/amazing-feature
@@ -154,7 +154,7 @@ npm run build
 
 If you discover a security vulnerability—especially regarding the cryptographic envelope, key derivation, or token handling—**please do not open a public GitHub issue**.
 
-Please review our [Security Policy](SECURITY.md) and report vulnerabilities via GitHub Private Security Advisories or by emailing `security@selenehealth.org`. All reports receive immediate attention.
+Please review our [Security Policy](SECURITY.md) and report vulnerabilities via GitHub Private Security Advisories or by emailing `security@menivahealth.org`. All reports receive immediate attention.
 
 ---
 

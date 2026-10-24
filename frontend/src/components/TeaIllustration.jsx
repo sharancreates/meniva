@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function TeaIllustration() {
   return (
-    <svg viewBox="0 0 100 100" className="w-24 h-24 text-[var(--color-selene-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 100 100" className="w-24 h-24 text-[var(--color-meniva-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       {/* Tea Cup */}
       <path d="M30 45 C30 70, 70 70, 70 45 Z" fill="rgba(223, 155, 109, 0.15)" />
       <path d="M30 45 L70 45" />

@@ -8,7 +8,7 @@
 export async function deriveKeyFromPin(pin, username) {
   const encoder = new TextEncoder();
   const pinBytes = encoder.encode(pin);
-  const saltBytes = encoder.encode(username + "selene-salt-suffix");
+  const saltBytes = encoder.encode(username + "meniva-salt-suffix");
   
   const baseKey = await window.crypto.subtle.importKey(
     "raw",

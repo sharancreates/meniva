@@ -1,12 +1,12 @@
 # IRB Clinical Trial Research Proposal
 
-**Study Title:** Evaluating the Clinical Efficacy of Machine Learning Cycle Forecasting and Zero-Knowledge End-to-End Encryption on Menstrual Tracking Compliance and Symptom Management (The Selene Study)
+**Study Title:** Evaluating the Clinical Efficacy of Machine Learning Cycle Forecasting and Zero-Knowledge End-to-End Encryption on Menstrual Tracking Compliance and Symptom Management (The MENIVA Study)
 
 ---
 
 ## 1. Administrative Structure & Investigators
 *   **Principal Investigator:** Dr. Sarah Jenkins, MD, FACOG (Clinical Advisor, Digital Health Research)
-*   **Co-Investigator:** Prof. Rajesh Kumar, PhD (Professor of Medical Machine Learning, Selene Research Institute)
+*   **Co-Investigator:** Prof. Rajesh Kumar, PhD (Professor of Medical Machine Learning, MENIVA Research Institute)
 *   **Reviewing Board:** Institutional Review Board (IRB) for Digital Health & Clinical AI Research
 *   **Protocol Version:** 1.0.4
 *   **Date:** June 15, 2026
@@ -14,12 +14,12 @@
 ---
 
 ## 2. Abstract
-This study proposes to validate the clinical forecasting accuracy of the Selene FemTech Machine Learning Regressor (`selene_model.joblib`) in predicting menstrual cycles while auditing the psychological benefit of zero-knowledge client-side encryption on tracking compliance. Traditional FemTech apps suffer from low retention due to data-privacy concerns (GDPR / DPDP Act). Selene resolves this by wrapping Data Encryption Keys (DEKs) locally. A 12-week observational cohort of 200 participants will log symptoms, temperature, and cycle dates to compare algorithm accuracy (standard deviation bounds of ±2 days) against actual onset.
+This study proposes to validate the clinical forecasting accuracy of the MENIVA FemTech Machine Learning Regressor (`MENIVA_model.joblib`) in predicting menstrual cycles while auditing the psychological benefit of zero-knowledge client-side encryption on tracking compliance. Traditional FemTech apps suffer from low retention due to data-privacy concerns (GDPR / DPDP Act). MENIVA resolves this by wrapping Data Encryption Keys (DEKs) locally. A 12-week observational cohort of 200 participants will log symptoms, temperature, and cycle dates to compare algorithm accuracy (standard deviation bounds of ±2 days) against actual onset.
 
 ---
 
 ## 3. Study Objectives & Hypotheses
-*   **Primary Objective:** To measure the mean absolute error (MAE) of the Selene cycle prediction model under real-world settings and assess whether prediction error remains within standard deviation bounds (e.g., ±2 days).
+*   **Primary Objective:** To measure the mean absolute error (MAE) of the MENIVA cycle prediction model under real-world settings and assess whether prediction error remains within standard deviation bounds (e.g., ±2 days).
 *   **Secondary Objective:** To determine if E2EE privacy architectures increase daily symptom logging compliance (waking temperature, pelvic pain, back pain, sleep, energy) compared to standard cloud-hosted databases.
 *   **Hypothesis 1:** The ML regressor predicts next-cycle onset with an error margin of $\le 2.2$ days for users without severe cycle anomalies.
 *   **Hypothesis 2:** Guaranteeing zero-knowledge encryption increases logging frequency by $\ge 40\%$ due to decreased privacy apprehension.
@@ -54,4 +54,4 @@ This study proposes to validate the clinical forecasting accuracy of the Selene 
 *   **Consent Flow:** Consent is structured as granular check-boxes matching Section 6 of the Indian DPDP Act 2023.
 *   **Erasure Rights:** Participants can exercise their right to be forgotten. Clicking "Erase All Data" triggers account soft-deletion on the database, followed by permanent background purge of all encrypted rows.
 *   **Clinical Safeguards:** All dashboards and ML predictions include explicit disclaimers:
-    > "Selene is not a diagnostic tool and does not replace professional medical advice. If you experience severe symptoms or sudden anomalies, consult a licensed OB/GYN."
+    > "MENIVA is not a diagnostic tool and does not replace professional medical advice. If you experience severe symptoms or sudden anomalies, consult a licensed OB/GYN."

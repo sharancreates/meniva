@@ -277,7 +277,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
       });
       const data = await response.json();
       if (response.ok && data.logs) {
-        const dek = sessionStorage.getItem('selene_dek');
+        const dek = sessionStorage.getItem('meniva_dek');
         const processedLogs = [];
         for (const log of data.logs) {
           if (log.encrypted_data && dek) {
@@ -386,10 +386,10 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
   };
 
   const getOfflineLogs = async () => {
-    const raw = localStorage.getItem('selene_offline_logs');
+    const raw = localStorage.getItem('meniva_offline_logs');
     if (!raw) return [];
     
-    const key = sessionStorage.getItem('selene_session_key');
+    const key = sessionStorage.getItem('meniva_session_key');
     if (!key) {
       if (raw.trim().startsWith('[')) {
         try {
@@ -414,18 +414,18 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
   };
 
   const saveOfflineLogs = async (logs) => {
-    const key = sessionStorage.getItem('selene_session_key');
+    const key = sessionStorage.getItem('meniva_session_key');
     const jsonStr = JSON.stringify(logs);
     if (!key) {
-      localStorage.setItem('selene_offline_logs', jsonStr);
+      localStorage.setItem('meniva_offline_logs', jsonStr);
       return;
     }
     try {
       const encrypted = await encryptData(jsonStr, key);
-      localStorage.setItem('selene_offline_logs', encrypted);
+      localStorage.setItem('meniva_offline_logs', encrypted);
     } catch (err) {
       console.error("Failed to encrypt offline logs:", err);
-      localStorage.setItem('selene_offline_logs', jsonStr);
+      localStorage.setItem('meniva_offline_logs', jsonStr);
     }
   };
 
@@ -546,7 +546,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
       lifestyle_actions: { meds: menstrualMeds }
     };
 
-    const dek = sessionStorage.getItem('selene_dek');
+    const dek = sessionStorage.getItem('meniva_dek');
     let syncPayload = { ...payload };
     if (dek) {
       try {
@@ -602,7 +602,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
       lifestyle_actions: { meds: follicularMeds }
     };
 
-    const dek = sessionStorage.getItem('selene_dek');
+    const dek = sessionStorage.getItem('meniva_dek');
     let syncPayload = { ...payload };
     if (dek) {
       try {
@@ -691,7 +691,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
       payload.lifestyle_actions = { meds: lutealMeds };
     }
 
-    const dek = sessionStorage.getItem('selene_dek');
+    const dek = sessionStorage.getItem('meniva_dek');
     let syncPayload = { ...payload };
     if (dek) {
       try {
@@ -923,7 +923,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
               />
 
               {/* Front Screen "Did You Start Menstruating Today?" Prompt */}
-              <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-8 shadow-xl border border-[var(--color-selene-brown)]/20 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300">
+              <div className="bg-white/80 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-8 shadow-xl border border-[var(--color-meniva-brown)]/20 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300">
                 <div className="flex items-center gap-4 text-left">
                   <div className="w-14 h-14 rounded-2xl bg-[#df9b6d]/20 flex items-center justify-center text-3xl shrink-0">
                     🩸
@@ -1068,11 +1068,11 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
 
                 {/* Organic Illustration Placement */}
                 <div className="md:col-span-5 flex justify-center">
-                  <div className="border border-[var(--color-selene-brown)]/15 bg-white/30 backdrop-blur-sm rounded-[3rem] p-6 w-full max-w-[280px] aspect-square flex flex-col items-center justify-center text-center shadow-md">
+                  <div className="border border-[var(--color-meniva-brown)]/15 bg-white/30 backdrop-blur-sm rounded-[3rem] p-6 w-full max-w-[280px] aspect-square flex flex-col items-center justify-center text-center shadow-md">
                     {activePhase === 'menstrual' && <TeaIllustration />}
                     {(activePhase === 'follicular' || activePhase === 'ovulatory') && <ReadingIllustration />}
                     {activePhase === 'luteal' && <SleepingIllustration />}
-                    <p className="font-handwriting text-[var(--color-selene-brown)] text-lg leading-tight mt-2 italic font-semibold">
+                    <p className="font-handwriting text-[var(--color-meniva-brown)] text-lg leading-tight mt-2 italic font-semibold">
                       {activePhase === 'menstrual' ? 'Nourishing Rest' : 
                        activePhase === 'follicular' ? 'Rising Energy' : 
                        activePhase === 'ovulatory' ? 'Social Sparkle' : 
@@ -1185,7 +1185,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
                           ? 'border-transparent text-white font-bold'
                           : 'bg-white/40 border-black/5 text-black/60'
                       }`}
-                      style={{ backgroundColor: menstrualMoods[moodKey] ? 'var(--color-selene-brown)' : undefined }}
+                      style={{ backgroundColor: menstrualMoods[moodKey] ? 'var(--color-meniva-brown)' : undefined }}
                     >
                       {moodKey.replace(/([A-Z])/g, ' $1').toLowerCase()}
                     </motion.button>
@@ -1202,7 +1202,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
                           ? 'border-transparent text-white font-bold'
                           : 'bg-white/40 border-black/5 text-black/60'
                       }`}
-                      style={{ backgroundColor: follicularMoods[moodKey] ? 'var(--color-selene-brown)' : undefined }}
+                      style={{ backgroundColor: follicularMoods[moodKey] ? 'var(--color-meniva-brown)' : undefined }}
                     >
                       {moodKey.replace(/([A-Z])/g, ' $1').toLowerCase()}
                     </motion.button>
@@ -1219,7 +1219,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
                           ? 'border-transparent text-white font-bold'
                           : 'bg-white/40 border-black/5 text-black/60'
                       }`}
-                      style={{ backgroundColor: ovulatoryMoods[moodKey] ? 'var(--color-selene-brown)' : undefined }}
+                      style={{ backgroundColor: ovulatoryMoods[moodKey] ? 'var(--color-meniva-brown)' : undefined }}
                     >
                       {moodKey.replace(/([A-Z])/g, ' $1').toLowerCase()}
                     </motion.button>
@@ -1236,7 +1236,7 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
                           ? 'border-transparent text-white font-bold'
                           : 'bg-white/40 border-black/5 text-black/60'
                       }`}
-                      style={{ backgroundColor: lutealMoods[moodKey] ? 'var(--color-selene-brown)' : undefined }}
+                      style={{ backgroundColor: lutealMoods[moodKey] ? 'var(--color-meniva-brown)' : undefined }}
                     >
                       {moodKey.replace(/([A-Z])/g, ' $1').toLowerCase()}
                     </motion.button>
@@ -1410,9 +1410,9 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
 
                   {/* Sleeping Illustration */}
                   <div className="md:col-span-5 flex justify-center">
-                    <div className="border border-[var(--color-selene-brown)]/15 bg-white/30 backdrop-blur-sm rounded-[3rem] p-6 w-full max-w-[280px] aspect-square flex flex-col items-center justify-center text-center shadow-md">
+                    <div className="border border-[var(--color-meniva-brown)]/15 bg-white/30 backdrop-blur-sm rounded-[3rem] p-6 w-full max-w-[280px] aspect-square flex flex-col items-center justify-center text-center shadow-md">
                       <SleepingIllustration />
-                      <p className="font-handwriting text-[var(--color-selene-brown)] text-lg leading-tight mt-2 italic font-semibold">
+                      <p className="font-handwriting text-[var(--color-meniva-brown)] text-lg leading-tight mt-2 italic font-semibold">
                         Snooze Quality
                       </p>
                     </div>
@@ -1466,14 +1466,14 @@ export default function Dashboard({ username = 'user', setView, token, user, onL
 
       {/* Footer */}
       <footer className="w-full mt-auto">
-        <div className="w-full bg-[var(--color-selene-brown)] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="font-handwriting text-white text-xl tracking-wider">SELENE</span>
+        <div className="w-full bg-[var(--color-meniva-brown)] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <span className="font-handwriting text-white text-xl tracking-wider">MENIVA</span>
           <div className="flex gap-6 font-handwriting text-white/80 text-lg">
             <span className="hover:text-white cursor-pointer transition-colors">privacy manifesto</span>
             <span className="hover:text-white cursor-pointer transition-colors">github</span>
             <span className="hover:text-white cursor-pointer transition-colors">contact</span>
           </div>
-          <span className="font-handwriting text-white/50 text-sm">© 2026 selene</span>
+          <span className="font-handwriting text-white/50 text-sm">© 2026 meniva</span>
         </div>
       </footer>
     </motion.div>

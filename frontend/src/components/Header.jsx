@@ -11,7 +11,7 @@ export default function Header({ currentView, setView }) {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        SELENE
+        MENIVA
       </motion.button>
       
       {/* Navigation action */}
@@ -38,7 +38,7 @@ export default function Header({ currentView, setView }) {
         ) : (
           <motion.button 
             onClick={() => setView('landing')}
-            className="border-2 border-[var(--color-selene-brown)] text-[var(--color-selene-brown)] hover:bg-[var(--color-selene-brown)] hover:text-white font-handwriting text-2xl px-8 py-2 rounded-full transition-all duration-300 cursor-pointer"
+            className="border-2 border-[var(--color-meniva-brown)] text-[var(--color-meniva-brown)] hover:bg-[var(--color-meniva-brown)] hover:text-white font-handwriting text-2xl px-8 py-2 rounded-full transition-all duration-300 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

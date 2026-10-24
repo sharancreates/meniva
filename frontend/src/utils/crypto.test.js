@@ -11,7 +11,7 @@ beforeAll(() => {
   }
 });
 
-describe('Selene Client Cryptographic Module (crypto.js)', () => {
+describe('Meniva Client Cryptographic Module (crypto.js)', () => {
   const samplePin = "123456";
   const sampleUsername = "testuser";
 

@@ -1,6 +1,6 @@
 # User PIN Recovery Cryptographic Flow
 
-This document details the recovery path when a user loses their passcode (PIN). It illustrates how Selene allows users to regain access to their encrypted logs without the server ever knowing their PIN or storing their decrypted health record.
+This document details the recovery path when a user loses their passcode (PIN). It illustrates how MENIVA allows users to regain access to their encrypted logs without the server ever knowing their PIN or storing their decrypted health record.
 
 ```mermaid
 sequenceDiagram
@@ -35,7 +35,7 @@ sequenceDiagram
 When a user forgets their PIN, they locate the 32-character recovery key saved during registration.
 The client browser executes:
 ```javascript
-const salt = username + "selene-recovery-salt-suffix";
+const salt = username + "MENIVA-recovery-salt-suffix";
 const KEK_recovery = await pbkdf2(recoveryKeyInput, salt, 100000, 32);
 ```
 
@@ -60,7 +60,7 @@ If this decryption fails (e.g. invalid recovery key), the recovery key is wrong,
 Upon successful decryption, the browser prompts the user to enter a new PIN.
 The browser then derives the new KEK and wraps the raw DEK:
 ```javascript
-const newSalt = username + "selene-salt-suffix";
+const newSalt = username + "MENIVA-salt-suffix";
 const KEK_PIN_new = await pbkdf2(newPinInput, newSalt, 100000, 32);
 const encrypted_dek_pin_new = encryptFernet(rawDEK, KEK_PIN_new);
 const new_pin_hash = await sha256(newPinInput);

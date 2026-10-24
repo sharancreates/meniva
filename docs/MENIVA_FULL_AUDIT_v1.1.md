@@ -1,4 +1,4 @@
-# SELENE — FULL SYSTEM PRODUCTION AUDIT (v1.1)
+# MENIVA — FULL SYSTEM PRODUCTION AUDIT (v1.1)
 
 **Audit Date:** June 12, 2026 | **Auditor:** Principal SWE, Security Auditor, Product Architect  
 **Codebase Snapshot:** Commit `def2b1f` (main)
@@ -21,19 +21,19 @@
 ## 1. CRITICAL ISSUES (5)
 
 ### CRIT-1: Encryption Key as Plaintext File, No Backup
-- [models.py:31-43](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/backend/models.py#L31-L43) — `.encryption_key` is plaintext on disk. If deleted/corrupted, **ALL user health data is permanently unrecoverable**. No key escrow, no HSM, no backup.
+- [models.py:31-43](file:///c:/Users/Sharanya%20Nagar/Desktop/MENIVA/backend/models.py#L31-L43) — `.encryption_key` is plaintext on disk. If deleted/corrupted, **ALL user health data is permanently unrecoverable**. No key escrow, no HSM, no backup.
 
 ### CRIT-2: SECRET_KEY in .env File on Disk
-- [.env:5](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/backend/.env#L5) — Real SECRET_KEY exists in the `.env` file. Anyone with disk/repo access can forge JWT tokens for any user.
+- [.env:5](file:///c:/Users/Sharanya%20Nagar/Desktop/MENIVA/backend/.env#L5) — Real SECRET_KEY exists in the `.env` file. Anyone with disk/repo access can forge JWT tokens for any user.
 
 ### CRIT-3: No Token Blacklist/Revocation
-- [auth.py:235-254](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/backend/auth.py#L235-L254) — Logout clears refresh token but **access token remains valid 15 minutes**. Stolen tokens cannot be invalidated.
+- [auth.py:235-254](file:///c:/Users/Sharanya%20Nagar/Desktop/MENIVA/backend/auth.py#L235-L254) — Logout clears refresh token but **access token remains valid 15 minutes**. Stolen tokens cannot be invalidated.
 
 ### CRIT-4: db.create_all() on Every Startup
-- [app.py:76-77](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/backend/app.py#L76-L77) — Despite Flask-Migrate, `db.create_all()` runs unconditionally, masking migration issues and causing schema drift.
+- [app.py:76-77](file:///c:/Users/Sharanya%20Nagar/Desktop/MENIVA/backend/app.py#L76-L77) — Despite Flask-Migrate, `db.create_all()` runs unconditionally, masking migration issues and causing schema drift.
 
 ### CRIT-5: Fabricated "Success" on Prediction Errors
-- [predict.py:174-188](file:///c:/Users/Sharanya%20Nagar/Desktop/selene/backend/predict.py#L174-L188) — Catch-all returns `status: "success"` with hardcoded 28-day fallback. Users see confident predictions based on zero data. **Clinical safety violation.**
+- [predict.py:174-188](file:///c:/Users/Sharanya%20Nagar/Desktop/MENIVA/backend/predict.py#L174-L188) — Catch-all returns `status: "success"` with hardcoded 28-day fallback. Users see confident predictions based on zero data. **Clinical safety violation.**
 
 ---
 

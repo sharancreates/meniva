@@ -19,10 +19,10 @@ def rotate_keys(app=None, key_path=None, old_key=None, new_key=None):
                 with open(key_path, 'r') as f:
                     old_key = f.read().strip()
             else:
-                old_key = os.environ.get('SELENE_ENCRYPTION_KEY')
+                old_key = os.environ.get('MENIVA_ENCRYPTION_KEY')
                 
         if not old_key:
-            print("Error: No old encryption key provided or found in environment variable 'SELENE_ENCRYPTION_KEY'.")
+            print("Error: No old encryption key provided or found in environment variable 'MENIVA_ENCRYPTION_KEY'.")
             sys.exit(1)
             
         # Generate new key if not provided
@@ -82,7 +82,7 @@ def rotate_keys(app=None, key_path=None, old_key=None, new_key=None):
                 print("\n" + "="*80)
                 print("DATABASE ROTATION SUCCESSFUL!")
                 print("Please update your .env file with the new key:")
-                print(f"SELENE_ENCRYPTION_KEY={new_key}")
+                print(f"MENIVA_ENCRYPTION_KEY={new_key}")
                 print("="*80 + "\n")
                 
             # Update the loaded models cipher suite in memory

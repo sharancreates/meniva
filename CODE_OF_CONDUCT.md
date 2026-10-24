@@ -59,7 +59,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the project maintainers at conduct@selenehealth.org (or by reaching
+reported to the project maintainers at conduct@menivahealth.org (or by reaching
 out privately to the repository maintainer). All complaints will be reviewed and
 investigated promptly and fairly.
 

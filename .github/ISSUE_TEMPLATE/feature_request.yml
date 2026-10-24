@@ -1,12 +1,12 @@
 name: Feature Request
-description: Suggest an idea or clinical enhancement for Selene
+description: Suggest an idea or clinical enhancement for Meniva
 title: "[FEAT]: "
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting an enhancement to Selene! All new features must adhere to our zero-knowledge architecture and clinical evidence standards.
+        Thank you for suggesting an enhancement to Meniva! All new features must adhere to our zero-knowledge architecture and clinical evidence standards.
   - type: textarea
     id: problem
     attributes:

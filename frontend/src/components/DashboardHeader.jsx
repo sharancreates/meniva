@@ -15,7 +15,7 @@ export default function DashboardHeader({
       {/* Offline Status Banner */}
       {!isOnline && (
         <div className="w-full bg-[#df9b6d] text-[#362113] py-2 px-6 text-center font-bold font-sans text-xs sm:text-sm shadow-inner">
-          ⚠️ You are currently offline. Selene will queue your tracking logs locally and sync automatically when connection is restored.
+          ⚠️ You are currently offline. Meniva will queue your tracking logs locally and sync automatically when connection is restored.
         </div>
       )}
 
@@ -39,7 +39,7 @@ export default function DashboardHeader({
           onClick={() => setView('landing')}
           className="text-2xl font-black text-black tracking-widest hover:opacity-80 transition-opacity cursor-pointer mb-4 md:mb-0 focus:outline-none"
         >
-          SELENE
+          MENIVA
         </button>
 
         <div className="flex flex-col items-center text-center mb-4 md:mb-0">

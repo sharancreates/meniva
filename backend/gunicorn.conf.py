@@ -1,4 +1,4 @@
-# Gunicorn production configuration file for Selene API
+# Gunicorn production configuration file for Meniva API
 import os
 import multiprocessing
 
@@ -20,4 +20,4 @@ errorlog = "-"
 loglevel = os.environ.get("GUNICORN_LOGLEVEL", "info")
 
 # Process naming
-proc_name = "selene-api"
+proc_name = "meniva-api"

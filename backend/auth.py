@@ -48,7 +48,7 @@ def get_redis_client():
 
 
 def derive_kek_server(secret, salt_input, is_recovery=False):
-    suffix = "selene-recovery-salt-suffix" if is_recovery else "selene-salt-suffix"
+    suffix = "meniva-recovery-salt-suffix" if is_recovery else "meniva-salt-suffix"
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
@@ -292,7 +292,7 @@ def register():
         encrypted_dek_pin = cipher_pin.encrypt(dek.encode()).decode()
         
         # Generate recovery key
-        recovery_key = "selene-recovery-" + secrets.token_hex(16)
+        recovery_key = "meniva-recovery-" + secrets.token_hex(16)
         recovery_hash = ph.hash(recovery_key)
         
         kek_recovery = derive_kek_server(recovery_key, username, is_recovery=True)
@@ -419,7 +419,7 @@ def login():
         user.encrypted_dek_pin = cipher_pin.encrypt(dek.encode()).decode()
         
         # Generate new recovery key
-        recovery_key_to_send = "selene-recovery-" + secrets.token_hex(16)
+        recovery_key_to_send = "meniva-recovery-" + secrets.token_hex(16)
         user.recovery_hash = ph.hash(recovery_key_to_send)
         
         kek_recovery = derive_kek_server(recovery_key_to_send, username, is_recovery=True)
@@ -905,7 +905,7 @@ def reset_pin():
     user.encrypted_dek_pin = cipher_pin.encrypt(dek.encode()).decode()
     
     # Generate new recovery key
-    new_recovery_key = "selene-recovery-" + secrets.token_hex(16)
+    new_recovery_key = "meniva-recovery-" + secrets.token_hex(16)
     user.recovery_hash = ph.hash(new_recovery_key)
     new_kek_recovery = derive_kek_server(new_recovery_key, username, is_recovery=True)
     cipher_recovery = Fernet(new_kek_recovery.encode())

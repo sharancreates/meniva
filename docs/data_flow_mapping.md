@@ -1,4 +1,4 @@
-# Selene Cryptographic Data Flow & Architecture
+# MENIVA Cryptographic Data Flow & Architecture
 
 This document maps the lifecycle of user information, showing exactly where data is decrypted and highlighting the client-side/server-side cryptographic boundaries.
 
@@ -20,7 +20,7 @@ graph TD
 
 ## 1. Cryptographic Key Hierarchy
 
-Selene employs a Multi-Layered Envelope Encryption architecture to secure all personal health records (PHRs) in a Zero-Knowledge manner.
+MENIVA employs a Multi-Layered Envelope Encryption architecture to secure all personal health records (PHRs) in a Zero-Knowledge manner.
 
 | Key | Type | Derivation / Generation Method | Location | Scope |
 |---|---|---|---|---|
@@ -37,11 +37,11 @@ Selene employs a Multi-Layered Envelope Encryption architecture to secure all pe
 ### A. Authentication & Sign-Up
 1. **User Input:** User chooses a username, PIN, and requests registration.
 2. **Client-Side Derivation:**
-   - Salt = `username` + `"selene-salt-suffix"`
+   - Salt = `username` + `"MENIVA-salt-suffix"`
    - `KEK_PIN` = `PBKDF2(PIN, Salt, 100000, 32 bytes)`
 3. **Recovery Key Generation:**
    - A secure 32-character recovery key is randomly generated in the client browser.
-   - `KEK_Recovery` = `PBKDF2(RecoveryKey, username + "selene-recovery-salt-suffix", 100000, 32 bytes)`
+   - `KEK_Recovery` = `PBKDF2(RecoveryKey, username + "MENIVA-recovery-salt-suffix", 100000, 32 bytes)`
 4. **DEK Wrapping:**
    - A raw `DEK` is generated client-side: `DEK = Fernet.generate_key()`.
    - `DEK` is wrapped using `KEK_PIN` -> `encrypted_dek_pin`.

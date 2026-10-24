@@ -14,7 +14,7 @@ export default function CustomToggle({ label, checked, onChange, activeColor }) 
       >
         <motion.div
           className="w-6 h-6 rounded-full absolute top-0.5"
-          style={{ backgroundColor: checked ? activeColor : 'var(--color-selene-brown)' }}
+          style={{ backgroundColor: checked ? activeColor : 'var(--color-meniva-brown)' }}
           animate={{ left: checked ? '30px' : '2px' }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />

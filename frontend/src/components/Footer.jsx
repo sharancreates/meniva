@@ -34,12 +34,12 @@ export default function Footer() {
           transition={{ delay: 0.2 }}
           className="bg-[#4d5b4a] hover:bg-[#3d493a] text-white font-handwriting text-2xl px-10 py-4 rounded-full shadow-xl flex items-center gap-2 transition-colors duration-300 mt-4"
         >
-          Explore SELENE
+          Explore MENIVA
         </motion.button>
       </div>
 
       {/* Footer Links Block */}
-      <div className="w-full bg-[var(--color-selene-brown)] py-12 px-8 flex justify-center">
+      <div className="w-full bg-[var(--color-meniva-brown)] py-12 px-8 flex justify-center">
         <ul className="flex flex-col gap-4 font-handwriting text-white text-2xl list-disc list-inside">
           <motion.li whileHover={{ x: 5 }} className="cursor-pointer transition-transform">
             privacy manifesto

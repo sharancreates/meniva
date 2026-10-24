@@ -119,26 +119,26 @@ export default function Onboarding({ token, user, setUser, setView, showToast })
   };
 
   return (
-    <section className="w-full min-h-screen bg-[var(--color-selene-beige)] flex flex-col justify-between py-12 px-4 relative overflow-hidden select-none">
+    <section className="w-full min-h-screen bg-[var(--color-meniva-beige)] flex flex-col justify-between py-12 px-4 relative overflow-hidden select-none">
       
       {/* Decorative Stars */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
         <motion.div 
-          className="absolute top-[12%] left-[10%] text-[var(--color-selene-brown)]"
+          className="absolute top-[12%] left-[10%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 4.0, repeat: Infinity }}
         >
           <StarIcon size="30" />
         </motion.div>
         <motion.div 
-          className="absolute top-[25%] right-[12%] text-[var(--color-selene-brown)]"
+          className="absolute top-[25%] right-[12%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 4.8, repeat: Infinity, delay: 0.5 }}
         >
           <StarIcon size="36" />
         </motion.div>
         <motion.div 
-          className="absolute bottom-[20%] left-[15%] text-[var(--color-selene-brown)]"
+          className="absolute bottom-[20%] left-[15%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 5.2, repeat: Infinity, delay: 1.0 }}
         >
@@ -155,7 +155,7 @@ export default function Onboarding({ token, user, setUser, setView, showToast })
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl font-black text-black text-center tracking-tight mb-8"
         >
-          Customize Your <span className="font-sans uppercase tracking-widest text-2xl sm:text-3xl block sm:inline mt-2 sm:mt-0 ml-0 sm:ml-2">SELENE</span>
+          Customize Your <span className="font-sans uppercase tracking-widest text-2xl sm:text-3xl block sm:inline mt-2 sm:mt-0 ml-0 sm:ml-2">MENIVA</span>
         </motion.h2>
 
         <div className="relative w-full max-w-xl min-h-[500px] flex items-center justify-center">
@@ -201,10 +201,10 @@ export default function Onboarding({ token, user, setUser, setView, showToast })
                 <div className="bg-[#f2b994] text-black/90 p-4 rounded-2xl max-h-[180px] overflow-y-auto text-sm leading-relaxed border border-black/10 font-sans shadow-inner scrollbar-thin">
                   <p className="font-bold mb-2">Important Medical Disclaimer</p>
                   <p className="mb-2">
-                    Selene is a tracking and prediction tool intended for educational, wellness, and self-monitoring purposes.
+                    Meniva is a tracking and prediction tool intended for educational, wellness, and self-monitoring purposes.
                   </p>
                   <p className="mb-2">
-                    <strong>Selene is NOT a medical device</strong> and should never be used as a substitute for professional medical advice, diagnosis, treatment, or contraception.
+                    <strong>Meniva is NOT a medical device</strong> and should never be used as a substitute for professional medical advice, diagnosis, treatment, or contraception.
                   </p>
                   <p>
                     Always consult with a qualified physician or healthcare provider for any questions regarding menstrual health, pregnancy, or chronic conditions.
@@ -219,7 +219,7 @@ export default function Onboarding({ token, user, setUser, setView, showToast })
                       onChange={(e) => setDisclaimerAccepted(e.target.checked)}
                       className="w-4 h-4 rounded mt-0.5 border-black/20 text-[#8ba68b] focus:ring-transparent"
                     />
-                    <span>I accept that Selene is not a medical advisor.</span>
+                    <span>I accept that Meniva is not a medical advisor.</span>
                   </label>
                 </div>
 

@@ -18,7 +18,7 @@ class TestingConfig:
     RATELIMIT_ENABLED = False
     LEGACY_DEK_KEY = 'p_Mh8N-YsKDORo4aEg5zYf51CJ8KD0qkmMDEOdrCVo4='
 
-class SeleneEdgeCasesTestCase(unittest.TestCase):
+class MenivaEdgeCasesTestCase(unittest.TestCase):
     """
     Automated test cases asserting the canonical edge cases and specifications
     from the Period Tracking App Complete Testing Guide (TC-001 through TC-020).

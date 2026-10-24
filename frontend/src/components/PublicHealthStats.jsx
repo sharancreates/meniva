@@ -75,7 +75,7 @@ export default function PublicHealthStats({ setView, token }) {
           onClick={() => setView('landing')}
           className="text-2xl font-black text-black tracking-widest hover:opacity-80 transition-opacity cursor-pointer mb-4 md:mb-0 focus:outline-none"
         >
-          SELENE
+          MENIVA
         </button>
 
         <div className="flex flex-col items-center text-center mb-4 md:mb-0">
@@ -265,8 +265,8 @@ export default function PublicHealthStats({ setView, token }) {
 
       {/* Footer */}
       <footer className="w-full mt-auto bg-[#4e3829] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <span className="font-handwriting text-white text-xl tracking-wider">SELENE</span>
-        <span className="font-handwriting text-white/50 text-sm">© 2026 selene</span>
+        <span className="font-handwriting text-white text-xl tracking-wider">MENIVA</span>
+        <span className="font-handwriting text-white/50 text-sm">© 2026 meniva</span>
       </footer>
     </motion.div>
   );

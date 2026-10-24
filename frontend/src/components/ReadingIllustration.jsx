@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ReadingIllustration() {
   return (
-    <svg viewBox="0 0 100 100" className="w-24 h-24 text-[var(--color-selene-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 100 100" className="w-24 h-24 text-[var(--color-meniva-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       {/* Open book pages */}
       <path d="M50 75 C35 70, 20 72, 10 75 L10 35 C20 32, 35 30, 50 35 Z" fill="rgba(223, 155, 109, 0.1)" />
       <path d="M50 75 C65 70, 80 72, 90 75 L90 35 C80 32, 65 30, 50 35 Z" fill="rgba(223, 155, 109, 0.1)" />

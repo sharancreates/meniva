@@ -1,20 +1,20 @@
-# SELENE: UNIFIED MENSTRUAL HEALTH & CLINICAL INTELLIGENCE PLATFORM
+# MENIVA: UNIFIED MENSTRUAL HEALTH & CLINICAL INTELLIGENCE PLATFORM
 ## Brutal SSIP, Venture Capital, Government Pilot, Research, & Architectural Evaluation
 
 **Document Version:** 2.0 (Post-Hardening Analysis)  
-**Target Repository:** c:\Users\Sharanya Nagar\Desktop\selene  
+**Target Repository:** c:\Users\Sharanya Nagar\Desktop\MENIVA  
 **Auditor Roles:** SSIP Evaluator, Startup Investor, Government Smart-City / Public Health Officer, Research Professor, Hackathon Judge, and Lead Product Architect.
 
 ---
 
 > [!NOTE]
-> **Contextual Mapping Alignment:** This audit represents a translation of the user's template elements (which initially contained environmental placeholders like "Google Earth Engine," "Flood Risk," "Municipalities," and "Digital Twin Cities") into the actual domain of **Selene: Privacy-Focused Menstrual Health Platform (PCOS, PMDD, Endometriosis tracking)**. The environmental indicators have been mapped to their clinical and physiological equivalents to maintain 100% relevance to the active codebase.
+> **Contextual Mapping Alignment:** This audit represents a translation of the user's template elements (which initially contained environmental placeholders like "Google Earth Engine," "Flood Risk," "Municipalities," and "Digital Twin Cities") into the actual domain of **MENIVA: Privacy-Focused Menstrual Health Platform (PCOS, PMDD, Endometriosis tracking)**. The environmental indicators have been mapped to their clinical and physiological equivalents to maintain 100% relevance to the active codebase.
 
 ---
 
 ## 1. Current Project Assessment
 
-We evaluate the current Selene codebase (`app.py`, `auth.py`, `models.py`, `predict.py`, `insights_engine.py`, `Dashboard.jsx`) on a scale of 0 to 10.
+We evaluate the current MENIVA codebase (`app.py`, `auth.py`, `models.py`, `predict.py`, `insights_engine.py`, `Dashboard.jsx`) on a scale of 0 to 10.
 
 | Evaluation Metric | Score | Brutal, Actionable Justification |
 | :--- | :---: | :--- |
@@ -38,11 +38,11 @@ Every codebase weakness is identified and categorized by severity.
 ### A. Critical Missing Components (SSIP Rejection Risks)
 1. **Clinical Validation Proof:** The insights engine (`insights_engine.py`) uses manual thresholds (`avg_cycle > 35`, `temp_shift >= 0.35`). Evaluators will reject this if there are no medical sources backing these thresholds.
 2. **DPDP Act 2023 & HIPAA Compliance Audits:** The app lacks a comprehensive privacy consent flow. Under India's Digital Personal Data Protection Act (DPDP), health data is classified as sensitive, requiring explicit consent records and clear data-deletion logs.
-3. **True End-to-End Encryption (E2EE):** The backend decrypts data in the application memory space (`models.py:51-75`) using a global environment variable key (`SELENE_ENCRYPTION_KEY`). True zero-knowledge requires deriving encryption keys client-side from the user's PIN, preventing the server from reading any health data.
+3. **True End-to-End Encryption (E2EE):** The backend decrypts data in the application memory space (`models.py:51-75`) using a global environment variable key (`MENIVA_ENCRYPTION_KEY`). True zero-knowledge requires deriving encryption keys client-side from the user's PIN, preventing the server from reading any health data.
 4. **Offline Sync Conflict Resolver:** The frontend crashes or fails silently if network requests fail while saving logs (`Dashboard.jsx:264-267`). It lacks a local storage queue (IndexedDB) with conflict-resolution strategies.
 
 ### B. Important Improvements (Increases Funding Chances)
-1. **Proprietary ML Model Binary (`selene_model.joblib`):** While `predict.py:65-88` scaffolds model loading, the model file does not exist, defaulting to the fallback regression engine. A trained machine learning model must be present in the workspace.
+1. **Proprietary ML Model Binary (`MENIVA_model.joblib`):** While `predict.py:65-88` scaffolds model loading, the model file does not exist, defaulting to the fallback regression engine. A trained machine learning model must be present in the workspace.
 2. **PostgreSQL Migration and Connection Pooling:** The configuration fallback (`config.py:15-16`) to SQLite is unsuitable for production concurrency. Connection pooling (`PgBouncer`) is not implemented.
 3. **Token Revocation Database Bloat Control:** JWT revocations (`auth.py:266-324`) store blacklisted JTIs in the relational database without a background cleanup task, leading to table bloat over time.
 4. **Data Export & Portability Formats:** The export endpoint (`Settings.jsx:132-160`) outputs raw JSON. Translating this into standardized clinical formats like HL7/FHIR (Fast Healthcare Interoperability Resources) is needed for medical portability.
@@ -58,7 +58,7 @@ Every codebase weakness is identified and categorized by severity.
 
 ### Rejection Risks & Evaluator Concerns
 * **Liability & Diagnoses:** Judges will worry that the app acts as an unlicensed diagnostic tool for PCOS, PMDD, and Endometriosis, exposing the institution to medical liability.
-* **Security Auditing:** Evaluators will look closely at the "zero-knowledge" claim. If a developer can access the database, fetch the `SELENE_ENCRYPTION_KEY` from the environment, and decrypt every user log, the privacy promise is compromised.
+* **Security Auditing:** Evaluators will look closely at the "zero-knowledge" claim. If a developer can access the database, fetch the `MENIVA_ENCRYPTION_KEY` from the environment, and decrypt every user log, the privacy promise is compromised.
 * **Usage Engagement:** Menstrual trackers suffer from high churn. Evaluators will question how the platform retains users beyond the initial setup.
 
 ### 30 Hard Presentation Questions Evaluators Will Ask
@@ -247,7 +247,7 @@ Start the presentation with the app in calculator mode. Type in math equations t
 
 ### Pitch Frameworks
 * **30-Second Elevator Pitch:**
-  > *"Every 10 seconds, a woman in India checks a health tracker. If that tracker leaks her data, it is a privacy violation. For those managing PCOS, PMDD, or Endometriosis, tracking is necessary, but privacy is essential. We built Selene: a privacy-first menstrual health platform that uses local, client-side derived encryption and lightweight regression models to estimate cycle phases without exposing logs to the cloud. What looks like a simple calculator on your screen is a secure clinical logging platform. Selene keeps personal health data private."*
+  > *"Every 10 seconds, a woman in India checks a health tracker. If that tracker leaks her data, it is a privacy violation. For those managing PCOS, PMDD, or Endometriosis, tracking is necessary, but privacy is essential. We built MENIVA: a privacy-first menstrual health platform that uses local, client-side derived encryption and lightweight regression models to estimate cycle phases without exposing logs to the cloud. What looks like a simple calculator on your screen is a secure clinical logging platform. MENIVA keeps personal health data private."*
 * **2-Minute Pitch:**
   Focus on the scale of chronic conditions in India, demonstrate the transition from the calculator to the dashboard, and explain the database-level encryption system.
 * **5-Minute Technical Demo:**
@@ -336,7 +336,7 @@ A 3-month roadmap to prepare the project for submission.
 - [ ] 20. Implement a background clean-up task for the revoked tokens database.
 
 ### Clinical & ML Pipeline (21-30)
-- [ ] 21. Train the cycle regressor model and save it as `selene_model.joblib`.
+- [ ] 21. Train the cycle regressor model and save it as `MENIVA_model.joblib`.
 - [ ] 22. Update `predict.py` to use predicted values with standard deviation error ranges.
 - [ ] 23. Refactor prediction error catch blocks to return explicit error statuses.
 - [ ] 24. Document the clinical studies used to set insights engine thresholds.

@@ -41,7 +41,7 @@ export default function ValueProposition() {
             {/* Custom teardrop shape via SVG background */}
             <div className="absolute inset-0 bg-[#9d6b49] rounded-tr-[10rem] rounded-bl-[10rem] rounded-tl-3xl rounded-br-[10rem] shadow-lg flex items-center justify-center p-8 transform rotate-3">
                <p className="font-handwriting text-white text-2xl text-center leading-snug transform -rotate-3">
-                 Menstrual cycles differ. They are not of rigid 28 days. But most tracking apps assume they are. <br/><br/>Except SELENE.
+                 Menstrual cycles differ. They are not of rigid 28 days. But most tracking apps assume they are. <br/><br/>Except MENIVA.
                </p>
             </div>
           </motion.div>
@@ -57,7 +57,7 @@ export default function ValueProposition() {
             {/* Alternative organic shape */}
             <div className="absolute inset-0 bg-[#865538] rounded-[50%] rounded-tr-none shadow-lg flex items-center justify-center p-10 transform -rotate-6">
                <p className="font-handwriting text-white text-[1.65rem] text-center leading-snug transform rotate-6">
-                 SELENE doesn't break when you have an irregular cycle, or a 21 day cycle, or any-day cycle. It learns how your body is.
+                 MENIVA doesn't break when you have an irregular cycle, or a 21 day cycle, or any-day cycle. It learns how your body is.
                </p>
             </div>
           </motion.div>

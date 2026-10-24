@@ -37,18 +37,18 @@ export default function Settings({ username = 'user', setView, token, user, setU
 
   // Preferences
   const [camouflageMode, setCamouflageMode] = useState(() => {
-    return localStorage.getItem('selene_camouflage_mode') === 'true';
+    return localStorage.getItem('meniva_camouflage_mode') === 'true';
   });
   const [notifications, setNotifications] = useState(() => {
-    const saved = localStorage.getItem('selene_notifications');
+    const saved = localStorage.getItem('meniva_notifications');
     return saved === null ? true : saved === 'true';
   });
   const [darkCalendar, setDarkCalendar] = useState(() => {
-    const saved = localStorage.getItem('selene_dark_calendar');
+    const saved = localStorage.getItem('meniva_dark_calendar');
     return saved === null ? true : saved === 'true';
   });
   const [readableFont, setReadableFont] = useState(() => {
-    return localStorage.getItem('selene_readable_font') === 'true';
+    return localStorage.getItem('meniva_readable_font') === 'true';
   });
 
   // Data
@@ -63,7 +63,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
   const handleToggleReadableFont = () => {
     const newVal = !readableFont;
     setReadableFont(newVal);
-    localStorage.setItem('selene_readable_font', String(newVal));
+    localStorage.setItem('meniva_readable_font', String(newVal));
     if (newVal) {
       document.body.classList.add('readable-typography');
     } else {
@@ -74,19 +74,19 @@ export default function Settings({ username = 'user', setView, token, user, setU
   const handleToggleCamouflage = () => {
     const newVal = !camouflageMode;
     setCamouflageMode(newVal);
-    localStorage.setItem('selene_camouflage_mode', String(newVal));
+    localStorage.setItem('meniva_camouflage_mode', String(newVal));
   };
 
   const handleToggleNotifications = () => {
     const newVal = !notifications;
     setNotifications(newVal);
-    localStorage.setItem('selene_notifications', String(newVal));
+    localStorage.setItem('meniva_notifications', String(newVal));
   };
 
   const handleToggleDarkCalendar = () => {
     const newVal = !darkCalendar;
     setDarkCalendar(newVal);
-    localStorage.setItem('selene_dark_calendar', String(newVal));
+    localStorage.setItem('meniva_dark_calendar', String(newVal));
   };
 
 
@@ -143,7 +143,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `selene_export_${new Date().toISOString().split('T')[0]}.json`;
+      a.download = `meniva_export_${new Date().toISOString().split('T')[0]}.json`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -171,7 +171,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `selene_fhir_export_${new Date().toISOString().split('T')[0]}.json`;
+      a.download = `meniva_fhir_export_${new Date().toISOString().split('T')[0]}.json`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -212,7 +212,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `selene_consultation_report_${new Date().toISOString().split('T')[0]}.pdf`;
+      a.download = `meniva_consultation_report_${new Date().toISOString().split('T')[0]}.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -275,14 +275,14 @@ export default function Settings({ username = 'user', setView, token, user, setU
           onClick={() => setView('landing')}
           className="text-2xl font-black text-black tracking-widest hover:opacity-80 transition-opacity cursor-pointer mb-4 md:mb-0 focus:outline-none"
         >
-          SELENE
+          MENIVA
         </button>
 
         <div className="flex flex-col items-center text-center mb-4 md:mb-0">
           <h1 className="font-handwriting text-3xl sm:text-4xl font-bold tracking-wide leading-none">
             Settings
           </h1>
-          <p className="font-handwriting text-lg opacity-70 mt-1">customize your selene experience</p>
+          <p className="font-handwriting text-lg opacity-70 mt-1">customize your meniva experience</p>
         </div>
 
         <div className="flex items-center gap-4 flex-wrap justify-end">
@@ -385,7 +385,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
           </h2>
 
           <p className="font-handwriting text-lg text-black/60 mb-5">
-            Selene adapts its predictions and recommendations based on your conditions.
+            Meniva adapts its predictions and recommendations based on your conditions.
           </p>
 
           <div className="flex flex-col gap-4">
@@ -408,7 +408,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
                   <span className="font-handwriting text-2xl font-bold text-black">{label}</span>
                   <span className="font-handwriting text-base text-black/50">{desc}</span>
                 </div>
-                <div className={`w-6 h-6 rounded-full border-2 border-black flex items-center justify-center transition-all duration-200 ${conditions[key] ? 'bg-[var(--color-selene-brown)]' : 'bg-transparent'}`}>
+                <div className={`w-6 h-6 rounded-full border-2 border-black flex items-center justify-center transition-all duration-200 ${conditions[key] ? 'bg-[var(--color-meniva-brown)]' : 'bg-transparent'}`}>
                   {conditions[key] && <div className="w-2 h-2 bg-white rounded-full" />}
                 </div>
               </button>
@@ -434,7 +434,7 @@ export default function Settings({ username = 'user', setView, token, user, setU
           <div className="flex flex-col gap-5">
             <SettingsToggle
               label="Camouflage Mode"
-              desc="Disguise Selene as a calculator"
+              desc="Disguise Meniva as a calculator"
               checked={camouflageMode}
               onChange={handleToggleCamouflage}
             />
@@ -617,7 +617,7 @@ function SettingsToggle({ label, desc, checked, onChange }) {
       >
         <motion.div
           className="w-6 h-6 rounded-full absolute top-0.5"
-          style={{ backgroundColor: checked ? '#df9b6d' : 'var(--color-selene-brown)' }}
+          style={{ backgroundColor: checked ? '#df9b6d' : 'var(--color-meniva-brown)' }}
           animate={{ left: checked ? '30px' : '2px' }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
@@ -629,14 +629,14 @@ function SettingsToggle({ label, desc, checked, onChange }) {
 function AppFooter() {
   return (
     <footer className="w-full mt-auto">
-      <div className="w-full bg-[var(--color-selene-brown)] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <span className="font-handwriting text-white text-xl tracking-wider">SELENE</span>
+      <div className="w-full bg-[var(--color-meniva-brown)] py-8 px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <span className="font-handwriting text-white text-xl tracking-wider">MENIVA</span>
         <div className="flex gap-6 font-handwriting text-white/80 text-lg">
           <span className="hover:text-white cursor-pointer transition-colors">privacy manifesto</span>
           <span className="hover:text-white cursor-pointer transition-colors">github</span>
           <span className="hover:text-white cursor-pointer transition-colors">contact</span>
         </div>
-        <span className="font-handwriting text-white/50 text-sm">© 2026 selene</span>
+        <span className="font-handwriting text-white/50 text-sm">© 2026 meniva</span>
       </div>
     </footer>
   );

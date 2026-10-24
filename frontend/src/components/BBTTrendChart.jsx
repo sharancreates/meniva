@@ -55,7 +55,7 @@ export default function BBTTrendChart({ bbtData = [] }) {
             <path
               d={bbtData.map((d, idx) => `${idx === 0 ? 'M' : 'L'} ${getX(d.dayOfCycle)} ${getY(d.temp)}`).join(' ')}
               fill="none"
-              stroke="var(--color-selene-brown)"
+              stroke="var(--color-meniva-brown)"
               strokeWidth={3}
               strokeLinecap="round"
               strokeLinejoin="round"

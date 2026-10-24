@@ -1,6 +1,6 @@
-# Selene Project Status & Documentation Report
+# MENIVA Project Status & Documentation Report
 
-This document outlines the architectural status of **Selene: Privacy-Focused Menstrual Health Platform**, summarizing the features implemented to date and mapping out all remaining development tasks for the platform's production-ready submission.
+This document outlines the architectural status of **MENIVA: Privacy-Focused Menstrual Health Platform**, summarizing the features implemented to date and mapping out all remaining development tasks for the platform's production-ready submission.
 
 ---
 
@@ -25,7 +25,7 @@ We have successfully completed all **20/20 tasks** of the **Security & Cryptogra
 * **Strict Content Security Policy (CSP):** Configured strict CSP response headers in `app.py`, completely removing `'unsafe-inline'` from script directives.
 * **Redis-Backed Rate Limiting:** Bound Flask-Limiter to the Redis server (`RATELIMIT_STORAGE_URI`) to protect endpoints from brute-force register attempts.
 * **Dynamic JSON Sanitization:** Added recursive HTML-escaping to sanitize all unstructured JSON fields (`mood_toggles`, `symptom_tags`, and `lifestyle_actions`) in `logs.py` to block XSS payloads.
-* **SSL Termination Conf:** Written a production-ready `nginx/selene.conf` supporting modern TLS 1.2/1.3 protocols, secure ciphers, HSTS, and proxy headers.
+* **SSL Termination Conf:** Written a production-ready `nginx/MENIVA.conf` supporting modern TLS 1.2/1.3 protocols, secure ciphers, HSTS, and proxy headers.
 
 ### E. Backend Infrastructure & Resiliency (Task 11-20)
 * **PostgreSQL Engine & Connection Pooling:** Transitioned database configuration to target PostgreSQL, utilizing connection pool size limits, maximum overflow limits, and recycle timeouts via SQLAlchemy configuration parameters.
@@ -36,7 +36,7 @@ We have successfully completed all **20/20 tasks** of the **Security & Cryptogra
 * **Custom Admin CLI & Health Checks:** Exposed `db-backup` and `db-cleanup` Flask command line tasks, and integrated Redis connectivity pings in the `/health` endpoint checks.
 
 ### F. Clinical & ML Pipeline Hardening (Task 21-30)
-* **Gradient Boosting Regressor:** Deployed an adaptive gradient boosting regressor (`selene_model.joblib`) trained on clinical conditions (PCOS, PMDD, Endometriosis) and vital indicators.
+* **Gradient Boosting Regressor:** Deployed an adaptive gradient boosting regressor (`MENIVA_model.joblib`) trained on clinical conditions (PCOS, PMDD, Endometriosis) and vital indicators.
 * **Error Bounds:** Incorporated standard deviation calculations displaying error bounds (e.g., `±2.0 days`) based on historical log variance.
 * **Savitzky-Golay Smoothing:** Integrated a 5-point quadratic Savitzky-Golay convolutional filter for mathematical smoothing of Basal Body Temperature curves.
 * **Isolation Forest Anomaly Detection:** Added unsupervised outlier detection flagging symptom index spikes and logging frequency anomalies.
@@ -46,7 +46,7 @@ We have successfully completed all **20/20 tasks** of the **Security & Cryptogra
 ### G. Frontend Quality & Refactoring (Task 31–40)
 * **Modular Component Extraction:** Split the massive dashboard monolith into separate, decoupled, reusable components (`CustomSlider`, `CustomToggle`, `PhaseCircle`, `BBTTrendChart`, `PatternInsights`, `AlertsPanel`, `CalendarDay`).
 * **Toast Notification System:** Replaced invasive browser alerts with clean, global, CSS toast notifications.
-* **Offline Caching & Auto-Sync:** Integrated a robust client-side caching queue (`selene_offline_logs` in `localStorage`) that catches actions when offline and automatically pushes synchronization once internet connection returns.
+* **Offline Caching & Auto-Sync:** Integrated a robust client-side caching queue (`MENIVA_offline_logs` in `localStorage`) that catches actions when offline and automatically pushes synchronization once internet connection returns.
 * **WCAG AAA Compliance:** Darkened phase-specific copy to meet/exceed contrast ratios (>= 7:1) across the entire interface.
 * **Cozy FemTech Vector SVG Artwork:** Embedded custom, organic vector SVGs (`TeaIllustration`, `ReadingIllustration`, `SleepingIllustration`) replacing flat placeholders.
 * **Optimized Calendar Day Cells:** Memoized grid cells in a dedicated `CalendarDay` component to bypass unnecessary rendering loops.
@@ -70,7 +70,7 @@ The remaining 40 tasks from the audit are organized by core areas.
 - [x] **20. Revoked Token Cleanup:** Set up a Celery or cron worker to clean expired JTI entries from the database.
 
 ### B. Clinical & ML Pipeline (Tasks 21–30)
-- [x] **21. Train Cycle Regressor:** Train the cycle prediction model on public FemTech datasets and export it to `selene_model.joblib`.
+- [x] **21. Train Cycle Regressor:** Train the cycle prediction model on public FemTech datasets and export it to `MENIVA_model.joblib`.
 - [x] **22. Prediction Error Standard Deviations:** Update prediction output to display standard deviation error bounds (e.g., ±2 days).
 - [x] **23. Predict Exception Refactoring:** Ensure ML pipeline failure blocks raise descriptive API errors.
 - [x] **24. Document Insight Sources:** Reference the medical papers justifying the rules (e.g., PCOS or PMDD flags) in the codebase.
@@ -103,5 +103,5 @@ The remaining 40 tasks from the audit are organized by core areas.
 - [x] **47. User PIN Recovery Flow:** Define and document user recovery paths when they lose their passcode.
 - [x] **48. Local Installation Script:** Build an automated setup script (e.g., shell or batch) for local dev environments.
 - [x] **49. Staging Server Setup:** Configure an automated CI/CD pipeline to deploy changes to a remote staging server.
-- [x] **50. Pitch Deck Presentation:** Finalize the slide presentation emphasizing Selene's unique E2EE privacy model.
+- [x] **50. Pitch Deck Presentation:** Finalize the slide presentation emphasizing MENIVA's unique E2EE privacy model.
 

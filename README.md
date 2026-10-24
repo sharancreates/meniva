@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="docs/banner.png" alt="Selene" width="100%" />
+  <img src="docs/banner.png" alt="Meniva" width="100%" />
 </p>
 
-<h1 align="center">S E L E N E</h1>
+<h1 align="center">M E N I V A</h1>
 
 <p align="center">
-  <em>Named after the Greek goddess of the Moon, Selene is a privacy-first menstrual health platform<br/>where your most intimate data remains mathematically yours.</em>
+  <em>Named after the ancient lunar goddess Meni, Meniva is a privacy-first menstrual health platform<br/>where your most intimate data remains mathematically yours.</em>
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@
 
 ## The Philosophy
 
-Most health tracking apps ask you to trust them with your body's data. Selene was designed around a different premise: **what if the server itself could never read your data?**
+Most health tracking apps ask you to trust them with your body's data. Meniva was designed around a different premise: **what if the server itself could never read your data?**
 
 Every symptom log, temperature reading, and mood entry is encrypted with a key derived from your personal PIN, a key that never touches the server in its raw form. The database stores ciphertext. The backend processes ciphertext. If someone breaches the server, they find noise.
 
@@ -41,7 +41,7 @@ This is not a feature. It is the foundation.
 
 ### Zero-Knowledge Encryption Model
 
-Selene implements a layered envelope encryption scheme where the server is structurally prevented from accessing plaintext health data:
+Meniva implements a layered envelope encryption scheme where the server is structurally prevented from accessing plaintext health data:
 
 ```
                           Client Browser
@@ -89,7 +89,7 @@ Selene implements a layered envelope encryption scheme where the server is struc
 
 ## Application Flow
 
-The user journey through Selene is designed around progressive trust. Each layer reveals more functionality only after the previous layer has been secured.
+The user journey through Meniva is designed around progressive trust. Each layer reveals more functionality only after the previous layer has been secured.
 
 ```mermaid
 flowchart TD
@@ -152,7 +152,7 @@ flowchart TD
 
 ### Cycle Prediction Engine
 
-Selene combines a trained **Gradient Boosting Regressor** with mathematical fallback heuristics:
+Meniva combines a trained **Gradient Boosting Regressor** with mathematical fallback heuristics:
 
 | Component | Detail |
 |:----------|:-------|
@@ -192,7 +192,7 @@ Health exports are generated in two clinical formats:
 ## Project Structure
 
 ```
-selene/
+meniva/
 |
 +-- backend/
 |   +-- app.py                 # Flask application factory
@@ -220,7 +220,7 @@ selene/
 |   `-- vite.config.js         # Build configuration
 |
 +-- nginx/
-|   `-- selene.conf            # Production reverse proxy + SSL config
+|   `-- meniva.conf            # Production reverse proxy + SSL config
 |
 +-- docs/                      # Supplementary documentation
 |   +-- audit.md               # Production readiness checklist
@@ -250,7 +250,7 @@ selene/
 ### Backend
 
 ```bash
-git clone https://github.com/sharancreates/selene.git
+git clone https://github.com/sharancreates/meniva.git
 cd backend
 python -m venv venv
 source venv/bin/activate          # Windows: .\venv\Scripts\activate
@@ -259,7 +259,7 @@ pip install -r requirements.txt
 # Configure environment
 cp .env.example .env              # Preconfigured for zero-setup SQLite; edit if using PostgreSQL/Redis
 
-# Initialize database (creates local SQLite instance/selene.db by default)
+# Initialize database (creates local SQLite instance/meniva.db by default)
 flask db upgrade
 
 # Run tests (37 unit, integration, and edge-case tests)
@@ -282,7 +282,7 @@ npm run dev                       # Starts on http://localhost:5173
 
 ## Deployment
 
-Selene ships with production-ready configurations for Nginx + Gunicorn deployments.
+Meniva ships with production-ready configurations for Nginx + Gunicorn deployments.
 
 ### 1. Build Frontend
 
@@ -301,7 +301,7 @@ chmod +x backend/run_prod.sh
 
 ### 3. Configure Nginx
 
-Place `nginx/selene.conf` in `/etc/nginx/sites-available/` and provision SSL certificates:
+Place `nginx/meniva.conf` in `/etc/nginx/sites-available/` and provision SSL certificates:
 
 ```bash
 sudo certbot --nginx -d yourdomain.com
@@ -319,7 +319,7 @@ Continuous integration runs on every push and pull request via GitHub Actions:
 
 ## Security Policy
 
-Selene treats user privacy as a foundational architectural invariant. For vulnerability disclosure guidelines, cryptographic scope, and safe harbor commitments, please consult our [Security Policy](SECURITY.md).
+Meniva treats user privacy as a foundational architectural invariant. For vulnerability disclosure guidelines, cryptographic scope, and safe harbor commitments, please consult our [Security Policy](SECURITY.md).
 
 ---
 
@@ -333,7 +333,7 @@ We welcome contributions from clinicians, privacy advocates, and developers!
 
 ## License
 
-This project is open-source software licensed under the [MIT License](LICENSE). Copyright © 2026 Sharanya Nagar and Selene Contributors.
+This project is open-source software licensed under the [MIT License](LICENSE). Copyright © 2026 Sharanya Nagar and Meniva Contributors.
 
 ---
 

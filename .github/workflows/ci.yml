@@ -25,7 +25,7 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_DB: selene_test
+          POSTGRES_DB: meniva_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: testpassword
         ports:
@@ -53,7 +53,7 @@ jobs:
 
       - name: Run Backend Integration & Edge Case Tests
         env:
-          DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/selene_test
+          DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/meniva_test
           SECRET_KEY: test-secret-key-for-continuous-integration-jwt
           TESTING: 'True'
           FLASK_DEBUG: 'false'

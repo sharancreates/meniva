@@ -143,7 +143,7 @@ def train_and_export():
     print(f"Metrics saved to {metrics_path}")
     
     # Export model to file
-    dest_path = os.path.join(os.path.dirname(__file__), 'selene_model.joblib')
+    dest_path = os.path.join(os.path.dirname(__file__), 'meniva_model.joblib')
     joblib.dump(model, dest_path)
     print(f"Model exported successfully to {dest_path}")
     return metrics

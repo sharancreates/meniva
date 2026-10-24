@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea or clinical enhancement for Selene
+about: Suggest an idea or clinical enhancement for Meniva
 title: '[FEAT] '
 labels: 'enhancement'
 assignees: ''

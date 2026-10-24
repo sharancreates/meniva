@@ -1,15 +1,15 @@
-# Selene - Pitch Deck Presentation
+# MENIVA - Pitch Deck Presentation
 
-An 8-slide presentation outlining the Selene E2EE FemTech Platform.
+An 8-slide presentation outlining the MENIVA E2EE FemTech Platform.
 
 ---
 
 ## Slide 1: Title Slide
-### **SELENE**
+### **MENIVA**
 *The Private, Secure Menstrual Cycle & Symptoms Forecaster*
 
 *   **Subtitle:** Bridging the gap between predictive ML diagnostics and zero-knowledge privacy.
-*   **Presenter:** Selene Research Team
+*   **Presenter:** MENIVA Research Team
 *   **Mission:** Empowering individuals to track their reproductive health without compromising their digital privacy rights.
 
 ---
@@ -23,7 +23,7 @@ An 8-slide presentation outlining the Selene E2EE FemTech Platform.
 ---
 
 ## Slide 3: The Solution
-### **Selene Zero-Knowledge Architecture**
+### **MENIVA Zero-Knowledge Architecture**
 *   **Client-Side Cryptographic Boundary:** All symptoms, logs, and Basal Body Temperatures are encrypted on the browser before transmission.
 *   **Zero Server Visibility:** We don't store or know your PIN. If database servers are compromised, adversaries read only undecryptable base64 blocks.
 *   **Full User Agency:** Absolute control over key recovery and immediate account erasure options.

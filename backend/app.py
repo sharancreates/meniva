@@ -159,7 +159,7 @@ def create_app(config_class=Config):
             "status": "healthy" if is_healthy else "unhealthy",
             "database": db_status,
             "redis": redis_status,
-            "app_name": "selene-api"
+            "app_name": "meniva-api"
         }), 200 if is_healthy else 500
 
     # Register global exception handler to avoid leaking error details

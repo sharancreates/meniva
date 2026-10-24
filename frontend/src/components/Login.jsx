@@ -59,8 +59,8 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
       
       const data = await response.json();
       if (response.ok) {
-        sessionStorage.setItem('selene_session_key', kek_pin);
-        sessionStorage.setItem('selene_dek', data.dek);
+        sessionStorage.setItem('meniva_session_key', kek_pin);
+        sessionStorage.setItem('meniva_dek', data.dek);
         if (data.recovery_key) {
           setRecoveryKey(data.recovery_key);
           setRegUserData(data.user);
@@ -123,7 +123,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
 
   if (showRecoveryKeyScreen) {
     return (
-      <section className="relative w-full min-h-screen bg-[var(--color-selene-beige)] flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
+      <section className="relative w-full min-h-screen bg-[var(--color-meniva-beige)] flex flex-col items-center justify-center px-6 py-24 overflow-hidden">
         <div className="relative z-10 w-full max-w-lg bg-[#df9b6d] rounded-[2.5rem] p-8 sm:p-10 shadow-2xl border border-white/10 flex flex-col items-center text-center">
           <h3 className="text-3xl font-black text-black mb-4 font-serif">Save Your Recovery Key</h3>
           <p className="text-sm text-black mb-6 leading-relaxed">
@@ -157,13 +157,13 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
   }
 
   return (
-    <section className="relative w-full min-h-screen bg-[var(--color-selene-beige)] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-[var(--color-meniva-beige)] flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
       
       {/* Background Stars - positioned according to the mockup */}
       <div className="absolute inset-0 pointer-events-none select-none">
         {/* Top Left Star */}
         <motion.div 
-          className="absolute top-[15%] left-[10%] text-[var(--color-selene-brown)]"
+          className="absolute top-[15%] left-[10%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
           transition={{ duration: 4, repeat: Infinity }}
         >
@@ -172,7 +172,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
         
         {/* Far Left Star */}
         <motion.div 
-          className="absolute top-[55%] left-[4%] text-[var(--color-selene-brown)]"
+          className="absolute top-[55%] left-[4%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5, repeat: Infinity, delay: 1 }}
         >
@@ -181,7 +181,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
 
         {/* Bottom Left Star */}
         <motion.div 
-          className="absolute bottom-[15%] left-[12%] text-[var(--color-selene-brown)]"
+          className="absolute bottom-[15%] left-[12%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 4.5, repeat: Infinity, delay: 0.5 }}
         >
@@ -190,7 +190,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
 
         {/* Top Right Star */}
         <motion.div 
-          className="absolute top-[22%] right-[15%] text-[var(--color-selene-brown)]"
+          className="absolute top-[22%] right-[15%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.9, 0.6] }}
           transition={{ duration: 4.8, repeat: Infinity, delay: 1.5 }}
         >
@@ -199,7 +199,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
 
         {/* Mid Right Star */}
         <motion.div 
-          className="absolute top-[62%] right-[20%] text-[var(--color-selene-brown)]"
+          className="absolute top-[62%] right-[20%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 4.2, repeat: Infinity }}
         >
@@ -208,7 +208,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
 
         {/* Bottom Right Star (next to placeholder) */}
         <motion.div 
-          className="absolute bottom-[8%] right-[26%] text-[var(--color-selene-brown)]"
+          className="absolute bottom-[8%] right-[26%] text-[var(--color-meniva-brown)]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 5.2, repeat: Infinity, delay: 0.8 }}
         >
@@ -226,7 +226,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
           transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl font-black text-black text-center tracking-tight mb-12"
         >
-          Welcome back to <span className="font-sans uppercase tracking-widest text-2xl sm:text-3xl block sm:inline mt-2 sm:mt-0 ml-0 sm:ml-2">SELENE</span>
+          Welcome back to <span className="font-sans uppercase tracking-widest text-2xl sm:text-3xl block sm:inline mt-2 sm:mt-0 ml-0 sm:ml-2">MENIVA</span>
         </motion.h2>
 
         {/* Form and Moon container */}
@@ -401,7 +401,7 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
             className="text-black hover:text-[#865538] font-handwriting text-2xl underline focus:outline-none transition-colors duration-200 cursor-pointer"
             onClick={() => setView('register')}
           >
-            new to selene? register
+            new to meniva? register
           </motion.button>
         </div>
       </div>
@@ -414,11 +414,11 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
         className="absolute bottom-0 right-0 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] pointer-events-none select-none z-20"
       >
         <div className="w-full h-full flex items-end justify-end p-4">
-          <div className="border-2 border-dashed border-[var(--color-selene-brown)]/40 bg-[var(--color-selene-beige)]/90 backdrop-blur-sm rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-lg w-[85%] h-[75%] sm:w-[80%] sm:h-[70%]">
-            <svg viewBox="0 0 24 24" className="w-12 h-12 text-[var(--color-selene-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <div className="border-2 border-dashed border-[var(--color-meniva-brown)]/40 bg-[var(--color-meniva-beige)]/90 backdrop-blur-sm rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-lg w-[85%] h-[75%] sm:w-[80%] sm:h-[70%]">
+            <svg viewBox="0 0 24 24" className="w-12 h-12 text-[var(--color-meniva-brown)] mb-2" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
-            <p className="font-handwriting text-[var(--color-selene-brown)] text-lg leading-tight">
+            <p className="font-handwriting text-[var(--color-meniva-brown)] text-lg leading-tight">
               [Illustration Placeholder:<br/>Girl reading a book]
             </p>
           </div>
@@ -427,14 +427,14 @@ export default function Login({ setView, onLoginSuccess, showToast }) {
 
       {/* Footer */}
       <div className="absolute bottom-0 left-0 w-full z-30">
-        <div className="w-full bg-[var(--color-selene-brown)] py-6 px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <span className="font-handwriting text-white text-xl tracking-wider">SELENE</span>
+        <div className="w-full bg-[var(--color-meniva-brown)] py-6 px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <span className="font-handwriting text-white text-xl tracking-wider">MENIVA</span>
           <div className="flex gap-6 font-handwriting text-white/80 text-lg">
             <span className="hover:text-white cursor-pointer transition-colors">privacy manifesto</span>
             <span className="hover:text-white cursor-pointer transition-colors">github</span>
             <span className="hover:text-white cursor-pointer transition-colors">contact</span>
           </div>
-          <span className="font-handwriting text-white/50 text-sm">© 2026 selene</span>
+          <span className="font-handwriting text-white/50 text-sm">© 2026 meniva</span>
         </div>
       </div>
 

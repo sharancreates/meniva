@@ -26,7 +26,7 @@ class TestingConfig:
     LEGACY_DEK_KEY = 'p_Mh8N-YsKDORo4aEg5zYf51CJ8KD0qkmMDEOdrCVo4='
 
 
-class SeleneBackendTestCase(unittest.TestCase):
+class MenivaBackendTestCase(unittest.TestCase):
     
     def setUp(self):
         """
@@ -38,9 +38,9 @@ class SeleneBackendTestCase(unittest.TestCase):
         self.ctx.push()
         db.create_all()
 
-        # Temporarily hide selene_model.joblib to ensure fallback math tests run without interference
+        # Temporarily hide meniva_model.joblib to ensure fallback math tests run without interference
         import os
-        self.model_path = os.path.join(os.path.dirname(__file__), 'selene_model.joblib')
+        self.model_path = os.path.join(os.path.dirname(__file__), 'meniva_model.joblib')
         self.model_temp_path = self.model_path + '.tmp'
         if os.path.exists(self.model_path):
             try:
@@ -56,7 +56,7 @@ class SeleneBackendTestCase(unittest.TestCase):
         db.drop_all()
         self.ctx.pop()
 
-        # Restore selene_model.joblib if it was hidden
+        # Restore meniva_model.joblib if it was hidden
         import os
         if os.path.exists(self.model_temp_path):
             try:
@@ -70,7 +70,7 @@ class SeleneBackendTestCase(unittest.TestCase):
         """
         # 1. Test successful user registration
         register_payload = {
-            "username": "selenetester",
+            "username": "menivatester",
             "pin": "123456",  # Updated to 6 characters for new PIN policy
             "cycle_length_baseline": 29,
             "period_length_baseline": 6,
@@ -82,7 +82,7 @@ class SeleneBackendTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         data = res.get_json()
         self.assertEqual(data['status'], 'success')
-        self.assertEqual(data['user']['username'], 'selenetester')
+        self.assertEqual(data['user']['username'], 'menivatester')
         self.assertEqual(data['user']['cycle_length_baseline'], 29)
         self.assertEqual(data['user']['period_length_baseline'], 6)
         self.assertEqual(data['user']['has_pcos'], True)
@@ -97,7 +97,7 @@ class SeleneBackendTestCase(unittest.TestCase):
 
         # 3. Test login with correct PIN
         login_payload = {
-            "username": "selenetester",
+            "username": "menivatester",
             "pin": "123456"
         }
         res_login = self.client.post('/api/auth/login', json=login_payload)
@@ -108,7 +108,7 @@ class SeleneBackendTestCase(unittest.TestCase):
 
         # 4. Test login with invalid PIN
         login_bad_pin = {
-            "username": "selenetester",
+            "username": "menivatester",
             "pin": "000000"
         }
         res_bad = self.client.post('/api/auth/login', json=login_bad_pin)
@@ -703,7 +703,7 @@ class SeleneBackendTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         data = res.get_json()
         recovery_key = data.get('recovery_key')
-        self.assertTrue(recovery_key.startswith('selene-recovery-'))
+        self.assertTrue(recovery_key.startswith('meniva-recovery-'))
         
         # 2. Reset PIN with invalid key
         reset_payload_bad = {"username": "resetuser", "recovery_key": "wrongkey", "new_pin": "222222"}
@@ -747,7 +747,7 @@ class SeleneBackendTestCase(unittest.TestCase):
         # Export logs
         res_export = self.client.get('/api/logs/export', headers=headers)
         self.assertEqual(res_export.status_code, 200)
-        self.assertIn('attachment; filename=selene_health_export.json', res_export.headers.get('Content-Disposition'))
+        self.assertIn('attachment; filename=meniva_health_export.json', res_export.headers.get('Content-Disposition'))
         export_data = res_export.get_json()
         self.assertEqual(len(export_data['logs']), 3)
         self.assertEqual(export_data['user']['username'], 'paguser')
@@ -1304,7 +1304,7 @@ class SeleneBackendTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.mimetype, 'application/pdf')
         self.assertIn('attachment', res.headers.get('Content-Disposition', ''))
-        self.assertIn('selene_consultation_report_pdf_test_user.pdf', res.headers.get('Content-Disposition', ''))
+        self.assertIn('meniva_consultation_report_pdf_test_user.pdf', res.headers.get('Content-Disposition', ''))
         self.assertIn('no-cache', res.headers.get('Cache-Control', ''))
 
 
