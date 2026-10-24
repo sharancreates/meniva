@@ -99,7 +99,7 @@ jobs:
       # Trigger deployment hook or restart app server
       - name: Restart Gunicorn Server
         if: env.STAGING_HOST != ''
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ env.STAGING_HOST }}
           username: ${{ env.STAGING_USER }}
