@@ -176,7 +176,7 @@ A deterministic rule-based engine evaluates daily logs against published clinica
 
 | Condition | Standard | Method |
 |:----------|:---------|:-------|
-| PMOS Risk | Rotterdam 2004 Criteria | Cycle irregularity + symptom pattern analysis |
+| PCOS Risk | Rotterdam 2004 Criteria | Cycle irregularity + symptom pattern analysis |
 | PMDD Risk | DSM-5 Criteria | Luteal phase mood severity tracking |
 | Endometriosis Flags | ACOG Guidelines | Pain pattern correlation with cycle phase |
 | Ovulation Detection | Su et al. 2017 | Biphasic BBT thermal shift calculation |
@@ -205,13 +205,14 @@ selene/
 |   +-- public_health.py       # K-anonymous aggregate health statistics
 |   +-- gunicorn.conf.py       # Production WSGI configuration
 |   +-- train_model.py         # Model training script
-|   +-- test_backend.py        # 29-case integration test suite
+|   +-- test_backend.py        # 30-case integration test suite
+|   +-- test_edge_cases.py     # 7-case edge & security test suite
 |   +-- requirements.txt       # Python dependencies
 |   `-- run_prod.sh            # Production startup script
 |
 +-- frontend/
 |   +-- src/
-|   |   +-- components/        # 24 React components
+|   |   +-- components/        # 28 React components
 |   |   +-- utils/crypto.js    # Client-side PBKDF2 key derivation
 |   |   +-- App.jsx            # Application root + routing
 |   |   `-- main.jsx           # Entry point
@@ -229,7 +230,8 @@ selene/
 |   `-- pitch_deck.md          # Investor pitch materials
 |
 `-- .github/workflows/
-    `-- staging_deploy.yml     # CI/CD: test, build, deploy pipeline
+    +-- ci.yml                 # Automated CI: matrix tests (Python 3.11/3.12, Node 20/22)
+    `-- staging_deploy.yml     # Staging deploy pipeline
 ```
 
 ---
@@ -261,7 +263,7 @@ cp .env.example .env              # Preconfigured for zero-setup SQLite; edit if
 flask db upgrade
 
 # Run tests (37 unit, integration, and edge-case tests)
-pytest backend/test_backend.py backend/test_edge_cases.py
+pytest test_backend.py test_edge_cases.py
 
 # Start development server
 flask run                         # Alternatively: python app.py
